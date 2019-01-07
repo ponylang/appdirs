@@ -2,6 +2,8 @@
 
 Library for detecting platform specific user directories e.g. for data, config, cache, logs.
 
+Most stuff is copied from the python library [appdirs](https://github.com/ActiveState/appdirs) from ActiveState.
+
 ## Status
 
 [![CircleCI](https://circleci.com/gh/mfelsche/pony-appdirs.svg?style=svg)](https://circleci.com/gh/mfelsche/pony-appdirs)

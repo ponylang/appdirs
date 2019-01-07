@@ -102,9 +102,7 @@ class AppDirs
           end
 
         for idx in Range[USize](0, data_dirs.size()) do
-          // expand '~' in all data dirs from env vars
-          let expanded = _expand_user(data_dirs(idx)?)?
-          data_dirs(idx)? = Path.join(expanded, _app_name)
+          data_dirs(idx)? = Path.join(data_dirs(idx)?, _app_name)
         end
         consume data_dirs
       end
@@ -165,9 +163,7 @@ class AppDirs
             end
 
           for idx in Range[USize](0, config_dirs.size()) do
-            // expand '~' in all data dirs from env vars
-            let expanded = _expand_user(config_dirs(idx)?)?
-            config_dirs(idx)? = Path.join(expanded, _app_name)
+            config_dirs(idx)? = Path.join(config_dirs(idx)?, _app_name)
           end
           consume config_dirs
         end

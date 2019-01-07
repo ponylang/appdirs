@@ -1,5 +1,5 @@
 use "files"
-use "cli"
+use "cli" // for EnvVars
 use "maybe"
 use "itertools"
 use "collections"

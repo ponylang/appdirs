@@ -167,14 +167,14 @@ class AppDirsVersionTest is UnitTest
       elseif windows then
         // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "C:\\Users\\" + user_name,
+                user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
+                site_data_dirs' = ["C:\\ProgramData\\appdirs\\0.4"],
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
+                site_config_dirs' = ["C:\\ProgramData\\appdirs\\0.4"],
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4\\Cache",
+                user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4\\Logs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -206,16 +206,16 @@ class AppDirsNoHomeTest is UnitTest
                 user_state_dir' = ExpectError,
                 user_log_dir' = ExpectError)
       elseif windows then
-        // TODO
+        // no impact for windows (afaik)
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "C:\\Users\\" + user_name,
+                user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                site_data_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                site_config_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
+                user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs")
       else
         ExpectedAppDirs(
           where home_dir' = ExpectError,
@@ -248,16 +248,15 @@ class AppDirsAppAuthorTest is UnitTest
                 user_state_dir' = "/home/ed/.local/state/appdirs",
                 user_log_dir' = "/home/ed/.cache/appdirs/log")
       elseif windows then
-        // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "C:\\Users\\" + user_name,
+                user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs",
+                site_data_dirs' = ["C:\\ProgramData\\Matthias Wahl\\appdirs"],
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs",
+                site_config_dirs' = ["C:\\ProgramData\\Matthias Wahl\\appdirs"],
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs\\Cache",
+                user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs",
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs\\Logs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -291,16 +290,16 @@ class AppDirsWindowsRoamingTest is UnitTest
                 user_state_dir' = "/home/ed/.local/state/appdirs",
                 user_log_dir' = "/home/ed/.cache/appdirs/log")
       elseif windows then
-        // TODO
+        // this is valid for windows 7 and newer (tested with windows 10)
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "C:\\Users\\" + user_name,
+                user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
+                site_data_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roamin\\appdirs",
+                site_config_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs\\Cache",
+                user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs\\Logs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -342,16 +341,16 @@ class AppDirsUnixXDGVarsTest is UnitTest
                 user_state_dir' = "/home/ed/.local/state/appdirs",
                 user_log_dir' = "/home/ed/.cache/appdirs/log")
       elseif windows then
-        // TODO
+        // no impact on windows AFAIK
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "C:\\Users\\" + user_name,
+                user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                site_data_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                site_config_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
+                user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",

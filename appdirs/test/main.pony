@@ -1,5 +1,6 @@
 use "ponytest"
 use ".."
+use "cli"
 
 actor Main is TestList
   new create(env: Env) =>
@@ -122,16 +123,17 @@ class AppDirsDefaultsTest is UnitTest
                 user_state_dir' = "/home/ed/.local/state/appdirs",
                 user_log_dir' = "/home/ed/.cache/appdirs/log")
       elseif windows then
-        // TODO
+        let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
+        // TODO: only tested on windows 10
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "C:\\Users\\" + user_name,
+                user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                site_data_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                site_config_dirs' = ["C:\\ProgramData\\appdirs"],
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
+                user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",

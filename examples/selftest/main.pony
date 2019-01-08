@@ -7,7 +7,7 @@ actor Main
     print(AppDirs(env.vars, app_name, "Matthias Wahl"), "With App-Author", env.out)
     print(AppDirs(env.vars, app_name, "Matthias Wahl", "0.1"), "With App-Author and Version", env.out)
     print(AppDirs(env.vars, app_name, None, "0.1"), "With Version", env.out)
-    print(AppDirs(env.vars, app_name, "Matthias Wahl", "0.2" where roaming=true), "No Roaming", env.out)
+    print(AppDirs(env.vars, app_name, "Matthias Wahl", "0.2" where roaming=true), "With Roaming", env.out)
 
   fun print(app_dirs: AppDirs, title: String, out: OutStream) =>
     let title_len = title.size()

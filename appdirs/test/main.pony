@@ -103,25 +103,33 @@ primitive AppDirsTestUtil
       h.assert_eq[String](expect, app_dirs.user_log_dir()? where loc=loc)
     end
 
+  fun test_home(): String =>
+    ifdef osx then
+      "/Users/ed"
+    else
+      "/home/ed"
+    end
+
 
 class AppDirsDefaultsTest is UnitTest
   fun name(): String => "appdirs/defaults"
 
   fun apply(h: TestHelper) ? =>
-    let env_vars = ["HOME=/home/ed"]
+    let env_vars = [
+      "HOME=" + AppdirsTestUtil.test_home()
+    ]
     let app_dirs = AppDirs(env_vars, "appdirs")
     let expected =
       ifdef osx then
-        // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where Users_dir' = "/Users/ed",
+                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                site_data_dirs' = ["/Library/Application Support/appdirs"],
+                user_config_dir' = "/Users/ed/.config/appdirs",
+                site_config_dirs' = ["/Library/Preferences/appdirs"],
+                user_cache_dir' = "/Users/ed/.cache/appdirs",
+                user_state_dir' = "/Users/ed/.local/state/appdirs",
+                user_log_dir' = "/Users/ed/.cache/appdirs/log")
       elseif windows then
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         // TODO: only tested on windows 10
@@ -150,22 +158,23 @@ class AppDirsDefaultsTest is UnitTest
 class AppDirsVersionTest is UnitTest
   fun name(): String => "appdirs/version"
   fun apply(h: TestHelper) ? =>
-    let env_vars = ["HOME=/home/ed"]
+    let env_vars = [
+      "HOME=" + AppdirsTestUtil.test_home()
+    ]
     let app_dirs = AppDirs(env_vars, "appdirs" where app_version="0.4")
     let expected =
       ifdef osx then
-        // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where home_dir' = "/Users/ed",
+                user_data_dir' = "/Users/ed/.local/share/appdirs/0.4",
+                site_data_dirs' = ["/Library/Application Support/appdirs/0.4"],
+                user_config_dir' = "/Users/ed/.config/appdirs/0.4",
+                site_config_dirs' = ["/Library/Preferences/appdirs/0.4"],
+                user_cache_dir' = "/Users/ed/.cache/appdirs/0.4",
+                user_state_dir' = "/Users/ed/.local/state/appdirs/0.4",
+                user_log_dir' = "/Users/ed/.cache/appdirs/0.4/log")
       elseif windows then
-        // TODO
+        let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
           where home_dir' = "C:\\Users\\" + user_name,
                 user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
@@ -199,14 +208,15 @@ class AppDirsNoHomeTest is UnitTest
         ExpectedAppDirs(
           where home_dir' = ExpectError,
                 user_data_dir' = ExpectError,
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
+                site_data_dirs' = ["/Library/Application Support/appdirs"],
                 user_config_dir' = ExpectError,
-                site_config_dirs' = ["/etc/xdg/appdirs"],
+                site_config_dirs' = ["/Library/Preferences/appdirs"],
                 user_cache_dir' = ExpectError,
                 user_state_dir' = ExpectError,
                 user_log_dir' = ExpectError)
       elseif windows then
         // no impact for windows (afaik)
+        let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
           where home_dir' = "C:\\Users\\" + user_name,
                 user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
@@ -233,21 +243,23 @@ class AppDirsAppAuthorTest is UnitTest
   fun name(): String => "appdirs/app_author"
 
   fun apply(h: TestHelper) ? =>
-    let env_vars = ["HOME=/home/ed"]
+    let env_vars = [
+      "HOME=" + AppdirsTestUtil.test_home()
+    ]
     let app_dirs = AppDirs(env_vars, "appdirs", "Matthias Wahl")
     let expected =
       ifdef osx then
-        // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where Users_dir' = "/Users/ed",
+                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                site_data_dirs' = ["/Library/Application Support/appdirs"],
+                user_config_dir' = "/Users/ed/.config/appdirs",
+                site_config_dirs' = ["/Library/Preferences/appdirs"],
+                user_cache_dir' = "/Users/ed/.cache/appdirs",
+                user_state_dir' = "/Users/ed/.local/state/appdirs",
+                user_log_dir' = "/Users/ed/.cache/appdirs/log")
       elseif windows then
+        let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
           where home_dir' = "C:\\Users\\" + user_name,
                 user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs",
@@ -275,22 +287,24 @@ class AppDirsWindowsRoamingTest is UnitTest
   fun name(): String => "appdirs/roaming"
 
   fun apply(h: TestHelper) ? =>
-    let env_vars = ["HOME=/home/ed"]
+    let env_vars = [
+      "HOME=" + AppdirsTestUtil.test_home()
+    ]
     let app_dirs = AppDirs(env_vars, "appdirs" where roaming = true)
     let expected =
       ifdef osx then
-        // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where Users_dir' = "/Users/ed",
+                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                site_data_dirs' = ["/Library/Application Support/appdirs"],
+                user_config_dir' = "/Users/ed/.config/appdirs",
+                site_config_dirs' = ["/Library/Preferences/appdirs"],
+                user_cache_dir' = "/Users/ed/.cache/appdirs",
+                user_state_dir' = "/Users/ed/.local/state/appdirs",
+                user_log_dir' = "/Users/ed/.cache/appdirs/log")
       elseif windows then
         // this is valid for windows 7 and newer (tested with windows 10)
+        let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
           where home_dir' = "C:\\Users\\" + user_name,
                 user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
@@ -319,7 +333,7 @@ class AppDirsUnixXDGVarsTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=/home/ed"
+      "HOME=" + AppdirsTestUtil.test_home()
       "XDG_DATA_HOME=~/.my_own/data"
       "XDG_DATA_DIRS=/etc/bla/:/blubb"
       "XDG_CONFIG_HOME=/home/ed/.my_config"
@@ -330,18 +344,18 @@ class AppDirsUnixXDGVarsTest is UnitTest
     let app_dirs = AppDirs(env_vars, "appdirs")
     let expected =
       ifdef osx then
-        // TODO
         ExpectedAppDirs(
-          where home_dir' = "/home/ed",
-                user_data_dir' = "/home/ed/.local/share/appdirs",
-                site_data_dirs' = ["/usr/local/share/appdirs"; "/usr/share/appdirs"],
-                user_config_dir' = "/home/ed/.config/appdirs",
-                site_config_dirs' = ["/etc/xdg/appdirs"],
-                user_cache_dir' = "/home/ed/.cache/appdirs",
-                user_state_dir' = "/home/ed/.local/state/appdirs",
-                user_log_dir' = "/home/ed/.cache/appdirs/log")
+          where Users_dir' = "/Users/ed",
+                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                site_data_dirs' = ["/Library/Application Support/appdirs"],
+                user_config_dir' = "/Users/ed/.config/appdirs",
+                site_config_dirs' = ["/Library/Preferences/appdirs"],
+                user_cache_dir' = "/Users/ed/.cache/appdirs",
+                user_state_dir' = "/Users/ed/.local/state/appdirs",
+                user_log_dir' = "/Users/ed/.cache/appdirs/log")
       elseif windows then
         // no impact on windows AFAIK
+        let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
           where home_dir' = "C:\\Users\\" + user_name,
                 user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",

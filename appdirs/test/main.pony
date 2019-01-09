@@ -116,13 +116,13 @@ class AppDirsDefaultsTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + AppdirsTestUtil.test_home()
+      "HOME=" + AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs")
     let expected =
       ifdef osx then
         ExpectedAppDirs(
-          where Users_dir' = "/Users/ed",
+          where home_dir' = "/Users/ed",
                 user_data_dir' = "/Users/ed/.local/share/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
                 user_config_dir' = "/Users/ed/.config/appdirs",
@@ -159,7 +159,7 @@ class AppDirsVersionTest is UnitTest
   fun name(): String => "appdirs/version"
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + AppdirsTestUtil.test_home()
+      "HOME=" + AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs" where app_version="0.4")
     let expected =
@@ -244,13 +244,13 @@ class AppDirsAppAuthorTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + AppdirsTestUtil.test_home()
+      "HOME=" + AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs", "Matthias Wahl")
     let expected =
       ifdef osx then
         ExpectedAppDirs(
-          where Users_dir' = "/Users/ed",
+          where home_dir' = "/Users/ed",
                 user_data_dir' = "/Users/ed/.local/share/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
                 user_config_dir' = "/Users/ed/.config/appdirs",
@@ -288,13 +288,13 @@ class AppDirsWindowsRoamingTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + AppdirsTestUtil.test_home()
+      "HOME=" + AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs" where roaming = true)
     let expected =
       ifdef osx then
         ExpectedAppDirs(
-          where Users_dir' = "/Users/ed",
+          where home_dir' = "/Users/ed",
                 user_data_dir' = "/Users/ed/.local/share/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
                 user_config_dir' = "/Users/ed/.config/appdirs",
@@ -333,7 +333,7 @@ class AppDirsUnixXDGVarsTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + AppdirsTestUtil.test_home()
+      "HOME=" + AppDirsTestUtil.test_home()
       "XDG_DATA_HOME=~/.my_own/data"
       "XDG_DATA_DIRS=/etc/bla/:/blubb"
       "XDG_CONFIG_HOME=/home/ed/.my_config"
@@ -345,7 +345,7 @@ class AppDirsUnixXDGVarsTest is UnitTest
     let expected =
       ifdef osx then
         ExpectedAppDirs(
-          where Users_dir' = "/Users/ed",
+          where home_dir' = "/Users/ed",
                 user_data_dir' = "/Users/ed/.local/share/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
                 user_config_dir' = "/Users/ed/.config/appdirs",

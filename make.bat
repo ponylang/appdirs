@@ -57,9 +57,9 @@ if errorlevel 1 goto error
 goto done
 
 :test
-if not exist %BUILDDIR%\%TARGET%.exe (
+if not exist %BUILDDIR%\test.exe (
   stable fetch
-  stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%
+  stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%\test
 )
 if errorlevel 1 goto error
 %BUILDDIR%\%TARGET%.exe --sequential

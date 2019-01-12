@@ -60,12 +60,34 @@ install:
         exit 1
       }
 
+      $req2 = [System.Net.WebRequest]::Create("https://bintray.com/pony-language/pony-stable-win/pony-stable/_latestVersion")
+      $req2.AllowAutoRedirect = $false
+      $req2.Proxy = $null
+      $req2.Timeout = 500000
+      $req2.UserAgent = [Microsoft.PowerShell.Commands.PSUserAgent]::FireFox
+      $res2 = $req2.GetResponse()
+      if ($res2 -eq "Found")
+      {
+        $latest_url = $res.GetResponseHeader("Location")
+        $latest_ver = $latest_url.Substring($latest_url.LastIndexOf("/") + 1)
+        $latest_ver = $latest_ver.Substring(0, $latest_ver.LastIndexOf("-"))
+        $download_url = "https://bintray.com/pony-language/pony-stable-win/download_file?file_path=" + $latest_ver + "-win64.zip"
+        Invoke-WebRequest -Uri $download_url -OutFile pony-stable.zip
+        Expand-Archive "pony-stable.zip" -DestinationPath "."
+        Rename-Item ($latest_ver + "-win64") "pony-stable"
+      }
+      else
+      {
+        Write-Error "Unable to determine latest Pony-stable version from Bintray redirect!"
+        exit 1
+      }
+
 build_script:
     - cd C:\projects\pony-appdirs
-    - set PATH=C:\projects\pony-appdirs\ponyc/ponyc/bin;%PATH%
+    - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\pony-stable\build\release;%PATH%
     - make.bat config=%configuration%
 
 test_script:
     - cd C:\projects\pony-appdirs
-    - set PATH=C:\projects\pony-appdirs\ponyc/ponyc/bin;%PATH%
+    - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\pony-stable\build\release;%PATH%
     - make.bat config=%configuration% test

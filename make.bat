@@ -49,7 +49,7 @@ if not exist %BUILDDIR%\test.exe (
   stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%\test
 )
 if errorlevel 1 goto error
-%BUILDDIR%\%TARGET%.exe --sequential
+%BUILDDIR%\test.exe
 if errorlevel 1 goto error
 goto done
 

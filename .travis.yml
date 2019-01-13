@@ -1,8 +1,5 @@
 language: c
-
-matrix:
-  include:
-    -os: osx
+os: osx
 
 install:
   - brew install ponyc pony-stable

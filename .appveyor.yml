@@ -53,7 +53,7 @@ install:
 
         $download_url = "https://bintray.com/pony-language/ponyc-win/download_file?file_path=" + $latest_ver + "-win64.zip"
         Write-Host "downloading pony from: " $download_url
-        Invoke-WebRequest -DisableKeepAlive -TimeoutSec 10 -Uri $download_url -OutFile ponyc.zip
+        Invoke-WebRequest -DisableKeepAlive -TimeoutSec 10 -UserAgent ([Microsoft.PowerShell.Commands.PSUserAgent]::FireFox) -Uri $download_url -OutFile ponyc.zip
         Expand-Archive "ponyc.zip" -DestinationPath "."
         Rename-Item ($latest_ver + "-win64") "ponyc"
         Write-Host "ponyc downloaded."
@@ -80,7 +80,7 @@ install:
         $latest_ver2 = $latest_url2.Substring($latest_url2.LastIndexOf("/") + 1)
         $stable_url = "https://bintray.com/pony-language/pony-stable-win/download_file?file_path=" + $latest_ver2 + "-win64.zip"
         Write-Host "downloading pony-stable from: " $stable_url
-        Invoke-WebRequest -DisableKeepAlive -TimeoutSec 10 -Uri $stable_url -OutFile stable.zip
+        Invoke-WebRequest -DisableKeepAlive -TimeoutSec 10 -UserAgent ([Microsoft.PowerShell.Commands.PSUserAgent]::FireFox) -Uri $stable_url -OutFile stable.zip
         Write-Host $error.Count
         if ($error.Count -gt 0)
         {

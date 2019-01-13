@@ -53,7 +53,7 @@ install:
 
         $download_url = "https://bintray.com/pony-language/ponyc-win/download_file?file_path=" + $latest_ver + "-win64.zip"
         Write-Host "downloading pony from: " $download_url
-        Invoke-WebRequest -DisableKeepAlive -TimeoutSec 10 -UserAgent ([Microsoft.PowerShell.Commands.PSUserAgent]::FireFox) -Uri $download_url -OutFile ponyc.zip
+        curl -v $download_url --output ponyc.zip
         Expand-Archive "ponyc.zip" -DestinationPath "."
         Rename-Item ($latest_ver + "-win64") "ponyc"
         Write-Host "ponyc downloaded."

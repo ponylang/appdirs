@@ -1,0 +1,11 @@
+language: c
+
+matrix:
+  include:
+    -os: osx
+
+install:
+  - brew install ponyc pony-stable
+
+script:
+  - make test selftest

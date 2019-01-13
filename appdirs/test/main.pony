@@ -181,9 +181,9 @@ class AppDirsVersionTest is UnitTest
                 site_data_dirs' = ["C:\\ProgramData\\appdirs\\0.4"],
                 user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
                 site_config_dirs' = ["C:\\ProgramData\\appdirs\\0.4"],
-                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4\\Cache",
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache\\0.4",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4\\Logs")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs\\0.4")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -309,7 +309,7 @@ class AppDirsWindowsRoamingTest is UnitTest
           where home_dir' = "C:\\Users\\" + user_name,
                 user_data_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
                 site_data_dirs' = ["C:\\ProgramData\\appdirs"],
-                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roamin\\appdirs",
+                user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
                 site_config_dirs' = ["C:\\ProgramData\\appdirs"],
                 user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs\\Cache",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",

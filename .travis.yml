@@ -2,7 +2,7 @@ language: c
 os: osx
 
 install:
-  - breq update
+  - brew update
   - brew install ponyc pony-stable
 
 script:

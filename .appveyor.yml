@@ -52,7 +52,7 @@ install:
         $latest_ver = $latest_ver.Substring(0, $latest_ver.LastIndexOf("-"))
         
         $download_url = "https://bintray.com/pony-language/ponyc-win/download_file?file_path=" + $latest_ver + "-win64.zip"
-        Write-Host "downloading pony from: " + $download_url
+        Write-Host "downloading pony from: " $download_url
         Invoke-WebRequest -Uri $download_url -OutFile ponyc.zip
         Expand-Archive "ponyc.zip" -DestinationPath "."
         Rename-Item ($latest_ver + "-win64") "ponyc"
@@ -77,16 +77,17 @@ install:
         $latest_ver2 = $latest_url2.Substring($latest_url2.LastIndexOf("/") + 1)
         $latest_ver2 = $latest_ver2.Substring(0, $latest_ver2.LastIndexOf("-"))
         $download_url2 = "https://bintray.com/pony-language/pony-stable-win/download_file?file_path=" + $latest_ver2 + "-win64.zip"
-        Write-Host "downloading pony-stable from: " + $doenload_url2
+        Write-Host "downloading pony-stable from: " $download_url2
         Invoke-WebRequest -Uri $download_url2 -OutFile pony-stable.zip
         Expand-Archive "pony-stable.zip" -DestinationPath "."
         Rename-Item ($latest_ver2 + "-win64") "pony-stable"
       }
       else
       {
-        Write-Error "Unable to determine latest Pony-stable version from Bintray redirect!"
+        Write-Host "Unable to determine latest Pony-stable version from Bintray redirect!"
         exit 1
       }
+      Write-Host "pony-stable downloaded."
   - ps: Write-Host "install done"
 
 build_script:

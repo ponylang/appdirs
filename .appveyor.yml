@@ -56,13 +56,13 @@ install:
         Invoke-WebRequest -Uri $download_url -OutFile ponyc.zip
         Expand-Archive "ponyc.zip" -DestinationPath "."
         Rename-Item ($latest_ver + "-win64") "ponyc"
+        Write-Host "ponyc downloaded."
       }
       else
       {
         Write-Host "Unable to determine latest Pony version from BinTray redirect!"
         exit 1
       }
-      Write-Host "ponyc downloaded."
   - ps: |
       $ErrorActionPreference = "Stop"
       cd C:\projects\pony-appdirs
@@ -83,13 +83,13 @@ install:
         Invoke-WebRequest -Uri $download_url2 -OutFile pony-stable.zip
         Expand-Archive "pony-stable.zip" -DestinationPath "."
         Rename-Item ("build") "pony-stable"
+        Write-Host "pony-stable downloaded."
       }
       else
       {
         Write-Host "Unable to determine latest Pony-stable version from Bintray redirect!"
         exit 1
       }
-      Write-Host "pony-stable downloaded."
   - ps: Write-Host "install done"
 
 build_script:

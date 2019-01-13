@@ -6,7 +6,7 @@ Most stuff is copied from the python library [appdirs](https://github.com/Active
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/mfelsche/pony-appdirs.svg?style=svg)](https://circleci.com/gh/mfelsche/pony-appdirs)
+[![CircleCI](https://circleci.com/gh/mfelsche/pony-appdirs.svg?style=svg)](https://circleci.com/gh/mfelsche/pony-appdirs) [![Build status](https://ci.appveyor.com/api/projects/status/mns3ld1foja8mo7n/branch/master?svg=true)](https://ci.appveyor.com/project/mfelsche/pony-appdirs/branch/master)
 
 ## Installation
 

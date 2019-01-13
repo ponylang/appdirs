@@ -81,11 +81,12 @@ install:
         $download_url2 = "https://bintray.com/pony-language/pony-stable-win/download_file?file_path=" + $latest_ver2 + "-win64.zip"
         Write-Host "downloading pony-stable from: " $download_url2
         Invoke-WebRequest -Uri $download_url2 -OutFile stable.zip
-        ls
+        Write-Host "downloaded " $download_url2
+        Get-ChildItem -Path C:\projects\pony-appdirs
         Expand-Archive "stable.zip" -DestinationPath "."
-        ls
+        Get-ChildItem -Path C:\projects\pony-appdirs
         Rename-Item ("build") "stable"
-        ls
+        Get-ChildItem -Path C:\projects\pony-appdirs
         Write-Host "pony-stable downloaded."
       }
       else

@@ -123,13 +123,13 @@ class AppDirsDefaultsTest is UnitTest
       ifdef osx then
         ExpectedAppDirs(
           where home_dir' = "/Users/ed",
-                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                user_data_dir' = "/Users/ed/Library/Application Support/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
-                user_config_dir' = "/Users/ed/.config/appdirs",
+                user_config_dir' = "/Users/ed/Library/Preferences/appdirs",
                 site_config_dirs' = ["/Library/Preferences/appdirs"],
-                user_cache_dir' = "/Users/ed/.cache/appdirs",
-                user_state_dir' = "/Users/ed/.local/state/appdirs",
-                user_log_dir' = "/Users/ed/.cache/appdirs/log")
+                user_cache_dir' = "/Users/ed/Library/Caches/appdirs",
+                user_state_dir' = "/Users/ed/Library/Application Support/appdirs",
+                user_log_dir' = "/Users/ed/Library/Logs/appdirs")
       elseif windows then
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         // TODO: only tested on windows 10
@@ -166,13 +166,13 @@ class AppDirsVersionTest is UnitTest
       ifdef osx then
         ExpectedAppDirs(
           where home_dir' = "/Users/ed",
-                user_data_dir' = "/Users/ed/.local/share/appdirs/0.4",
+                user_data_dir' = "/Users/ed/Library/Application Support/appdirs/0.4",
                 site_data_dirs' = ["/Library/Application Support/appdirs/0.4"],
-                user_config_dir' = "/Users/ed/.config/appdirs/0.4",
+                user_config_dir' = "/Users/ed/Library/Preferences/appdirs/0.4",
                 site_config_dirs' = ["/Library/Preferences/appdirs/0.4"],
-                user_cache_dir' = "/Users/ed/.cache/appdirs/0.4",
-                user_state_dir' = "/Users/ed/.local/state/appdirs/0.4",
-                user_log_dir' = "/Users/ed/.cache/appdirs/0.4/log")
+                user_cache_dir' = "/Users/ed/Library/Caches/appdirs/0.4",
+                user_state_dir' = "/Users/ed/Library/Application Support/appdirs/0.4",
+                user_log_dir' = "/Users/ed/Library/Logs/appdirs/0.4")
       elseif windows then
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
@@ -251,13 +251,13 @@ class AppDirsAppAuthorTest is UnitTest
       ifdef osx then
         ExpectedAppDirs(
           where home_dir' = "/Users/ed",
-                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                user_data_dir' = "/Users/ed/Library/Application Support/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
-                user_config_dir' = "/Users/ed/.config/appdirs",
+                user_config_dir' = "/Users/ed/Library/Preferences/appdirs",
                 site_config_dirs' = ["/Library/Preferences/appdirs"],
-                user_cache_dir' = "/Users/ed/.cache/appdirs",
-                user_state_dir' = "/Users/ed/.local/state/appdirs",
-                user_log_dir' = "/Users/ed/.cache/appdirs/log")
+                user_cache_dir' = "/Users/ed/Library/Caches/appdirs",
+                user_state_dir' = "/Users/ed/Library/Application Support/appdirs",
+                user_log_dir' = "/Users/ed/Library/Caches/appdirs/log")
       elseif windows then
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(
@@ -295,13 +295,13 @@ class AppDirsWindowsRoamingTest is UnitTest
       ifdef osx then
         ExpectedAppDirs(
           where home_dir' = "/Users/ed",
-                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                user_data_dir' = "/Users/ed/Library/Application Support/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
-                user_config_dir' = "/Users/ed/.config/appdirs",
+                user_config_dir' = "/Users/ed/Library/Preferences/appdirs",
                 site_config_dirs' = ["/Library/Preferences/appdirs"],
-                user_cache_dir' = "/Users/ed/.cache/appdirs",
-                user_state_dir' = "/Users/ed/.local/state/appdirs",
-                user_log_dir' = "/Users/ed/.cache/appdirs/log")
+                user_cache_dir' = "/Users/ed/Library/Caches/appdirs",
+                user_state_dir' = "/Users/ed/Library/Application Support/appdirs",
+                user_log_dir' = "/Users/ed/Library/Logs/appdirs")
       elseif windows then
         // this is valid for windows 7 and newer (tested with windows 10)
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
@@ -346,13 +346,13 @@ class AppDirsUnixXDGVarsTest is UnitTest
       ifdef osx then
         ExpectedAppDirs(
           where home_dir' = "/Users/ed",
-                user_data_dir' = "/Users/ed/.local/share/appdirs",
+                user_data_dir' = "/Users/ed/Library/Application Support/appdirs",
                 site_data_dirs' = ["/Library/Application Support/appdirs"],
-                user_config_dir' = "/Users/ed/.config/appdirs",
+                user_config_dir' = "/Users/ed/Library/Preferences/appdirs",
                 site_config_dirs' = ["/Library/Preferences/appdirs"],
-                user_cache_dir' = "/Users/ed/.cache/appdirs",
-                user_state_dir' = "/Users/ed/.local/state/appdirs",
-                user_log_dir' = "/Users/ed/.cache/appdirs/log")
+                user_cache_dir' = "/Users/ed/Library/Caches/appdirs",
+                user_state_dir' = "/Users/ed/Library/Application Support/appdirs",
+                user_log_dir' = "/Users/ed/Library/Logs/appdirs")
       elseif windows then
         // no impact on windows AFAIK
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username

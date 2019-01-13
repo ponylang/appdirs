@@ -94,6 +94,7 @@ install:
 build_script:
     - cd C:\projects\pony-appdirs
     - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\pony-appdirs\stable\release;%PATH%
+    - make.bat config=%configuration% fetch
     - make.bat config=%configuration%
 
 test_script:

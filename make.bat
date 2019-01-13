@@ -46,6 +46,7 @@ for /f "delims=" %%i in ('type %TARGET%\version.pony.in ^& break ^> %TARGET%\ver
   >>%TARGET%\version.pony echo(!line:%%%%VERSION%%%%=%VERSION%!
   endlocal
 )
+
 :noversion
 stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%
 if errorlevel 1 goto error

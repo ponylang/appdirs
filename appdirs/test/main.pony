@@ -141,7 +141,7 @@ class AppDirsDefaultsTest is UnitTest
                 site_config_dirs' = ["C:\\ProgramData\\appdirs"],
                 user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -183,7 +183,7 @@ class AppDirsVersionTest is UnitTest
                 site_config_dirs' = ["C:\\ProgramData\\appdirs\\0.4"],
                 user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache\\0.4",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs\\0.4")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\0.4")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -225,7 +225,7 @@ class AppDirsNoHomeTest is UnitTest
                 site_config_dirs' = ["C:\\ProgramData\\appdirs"],
                 user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs")
       else
         ExpectedAppDirs(
           where home_dir' = ExpectError,
@@ -268,7 +268,7 @@ class AppDirsAppAuthorTest is UnitTest
                 site_config_dirs' = ["C:\\ProgramData\\Matthias Wahl\\appdirs"],
                 user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs\\Cache",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs\\Logs")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\Matthias Wahl\\appdirs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -311,9 +311,9 @@ class AppDirsWindowsRoamingTest is UnitTest
                 site_data_dirs' = ["C:\\ProgramData\\appdirs"],
                 user_config_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
                 site_config_dirs' = ["C:\\ProgramData\\appdirs"],
-                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs\\Cache",
+                user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs\\Logs")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Roaming\\appdirs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",
@@ -364,7 +364,7 @@ class AppDirsUnixXDGVarsTest is UnitTest
                 site_config_dirs' = ["C:\\ProgramData\\appdirs"],
                 user_cache_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Cache",
                 user_state_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs",
-                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs\\Logs")
+                user_log_dir' = "C:\\Users\\" + user_name + "\\AppData\\Local\\appdirs")
       else
         ExpectedAppDirs(
           where home_dir' = "/home/ed",

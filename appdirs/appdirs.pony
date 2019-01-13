@@ -237,9 +237,7 @@ class AppDirs
         Opt.get[String](_app_version, "")
       ])
     elseif windows then
-      Path.join(
-        user_data_dir()?,
-        "Logs")
+      user_data_dir()?
     else
       // *nix
       Path.join(

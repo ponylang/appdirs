@@ -257,7 +257,7 @@ class AppDirsAppAuthorTest is UnitTest
                 site_config_dirs' = ["/Library/Preferences/appdirs"],
                 user_cache_dir' = "/Users/ed/Library/Caches/appdirs",
                 user_state_dir' = "/Users/ed/Library/Application Support/appdirs",
-                user_log_dir' = "/Users/ed/Library/Caches/appdirs/log")
+                user_log_dir' = "/Users/ed/Library/Logs/appdirs")
       elseif windows then
         let user_name = EnvVars(h.env.vars)("USERNAME")? // hack for getting the username
         ExpectedAppDirs(

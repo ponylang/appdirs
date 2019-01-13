@@ -80,9 +80,12 @@ install:
         $latest_ver2 = $latest_url2.Substring($latest_url2.LastIndexOf("/") + 1)
         $download_url2 = "https://bintray.com/pony-language/pony-stable-win/download_file?file_path=" + $latest_ver2 + "-win64.zip"
         Write-Host "downloading pony-stable from: " $download_url2
-        Invoke-WebRequest -Uri $download_url2 -OutFile pony-stable.zip
-        Expand-Archive "pony-stable.zip" -DestinationPath "."
-        Rename-Item ("build") "pony-stable"
+        Invoke-WebRequest -Uri $download_url2 -OutFile stable.zip
+        ls
+        Expand-Archive "stable.zip" -DestinationPath "."
+        ls
+        Rename-Item ("build") "stable"
+        ls
         Write-Host "pony-stable downloaded."
       }
       else
@@ -95,12 +98,12 @@ install:
 build_script:
     - echo "build script starting..."
     - cd C:\projects\pony-appdirs
-    - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\pony-stable\release;%PATH%
+    - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\stable\release;%PATH%
     - make.bat config=%configuration%
 
 test_script:
     - echo "test script starting..."
     - cd C:\projects\pony-appdirs
-    - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\pony-stable\release;%PATH%
+    - set PATH=C:\projects\pony-appdirs\ponyc\ponyc\bin;C:\projects\stable\release;%PATH%
     - make.bat config=%configuration% test
 deploy: off

@@ -4,12 +4,16 @@ jobs:
     docker:
       - image: ponylang/ponyc:release
     steps:
+      - run: apt update
+      - run: apt install -y make
       - checkout
       - run: make test
   vs-ponyc-master:
     docker:
       - image: ponylang/ponyc:latest
     steps:
+      - run: apt update
+      - run: apt install -y make
       - checkout
       - run: make test
 

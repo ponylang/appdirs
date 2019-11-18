@@ -5,7 +5,7 @@ jobs:
       - image: ponylang/ponyc:release
     steps:
       - run: apt update
-      - run: apt install -y make
+      - run: apt install -y make git
       - checkout
       - run: make test
   vs-ponyc-master:
@@ -13,7 +13,7 @@ jobs:
       - image: ponylang/ponyc:latest
     steps:
       - run: apt update
-      - run: apt install -y make
+      - run: apt install -y make git
       - checkout
       - run: make test
 

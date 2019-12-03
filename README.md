@@ -1,4 +1,4 @@
-# pony-appdirs
+# aUppdirs
 
 Library for detecting platform specific user directories e.g. for data, config, cache, logs.
 

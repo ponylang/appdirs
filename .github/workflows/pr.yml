@@ -12,3 +12,13 @@ jobs:
       - uses: actions/checkout@v1
       - name: Verify CHANGELOG
         run: changelog-tool verify
+
+  vs-ponyc-release:
+    name: Test against recent ponyc release
+    runs-on: ubuntu-latest
+    container:
+      image: ponylang/shared-docker-ci-x86-64-unknown-linux-builder:release
+    steps:
+      - uses: actions/checkout@v1
+      - name: Test
+        run: make test config=debug

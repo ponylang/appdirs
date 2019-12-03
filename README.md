@@ -6,7 +6,7 @@ Most stuff is copied from the python library [appdirs](https://github.com/Active
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/mfelsche/pony-appdirs.svg?style=svg)](https://circleci.com/gh/mfelsche/pony-appdirs) [![Build status](https://ci.appveyor.com/api/projects/status/mns3ld1foja8mo7n/branch/master?svg=true)](https://ci.appveyor.com/project/mfelsche/pony-appdirs/branch/master) [![Build Status](https://travis-ci.org/mfelsche/pony-appdirs.svg?branch=master)](https://travis-ci.org/mfelsche/pony-appdirs)
+[![CircleCI](https://circleci.com/gh/ponylang/pony-appdirs.svg?style=svg)](https://circleci.com/gh/ponylang/pony-appdirs) [![Build status](https://ci.appveyor.com/api/projects/status/mns3ld1foja8mo7n/branch/master?svg=true)](https://ci.appveyor.com/project/ponylang/pony-appdirs/branch/master) [![Build Status](https://travis-ci.org/ponylang/pony-appdirs.svg?branch=master)](https://travis-ci.org/ponylang/pony-appdirs)
 
 ## Installation
 
@@ -16,7 +16,7 @@ Most stuff is copied from the python library [appdirs](https://github.com/Active
 ```json
 { 
   "type": "github",
-  "repo": "mfelsche/pony-appdirs"
+  "repo": "ponylang/pony-appdirs"
 }
 ```
 

@@ -1,6 +1,5 @@
 use "files"
 use "cli" // for EnvVars
-use "maybe"
 use "itertools"
 use "collections"
 
@@ -10,18 +9,18 @@ primitive Paths
       .fold[String]("", {(acc, cur) => Path.join(acc, cur)})
 
 class AppDirs
-  let _home: Maybe[String]
+  let _home: (String | None)
   let _env_vars: Map[String, String] val
   let _app_name: String
-  let _app_author: Maybe[String]
-  let _app_version: Maybe[String]
+  let _app_author: String
+  let _app_version: String
   let _roaming: Bool
 
   new create(
-    env_vars: Maybe[Array[String] box],
+    env_vars: (Array[String] box | None),
     app_name: String,
-    app_author: Maybe[String] = None,
-    app_version: Maybe[String] = None,
+    app_author: String = "",
+    app_version: String = "",
     roaming: Bool = false)
   =>
     _env_vars = EnvVars(env_vars)
@@ -55,9 +54,10 @@ class AppDirs
           else
             KnownFolderIds.app_data_local()
           end
+
         Paths.join([
           KnownFolders(folder_id)?
-          Opt.get[String](_app_author, "")
+          _app_author
           _app_name
         ])
       else
@@ -87,7 +87,7 @@ class AppDirs
           [
             Paths.join([
               KnownFolders(KnownFolderIds.program_data())?
-              Opt.get[String](_app_author, "")
+              _app_author
               _app_name
             ])
           ] end
@@ -189,7 +189,7 @@ class AppDirs
           KnownFolders(KnownFolderIds.app_data_local())?
         Paths.join([
           known_folder
-          Opt.get[String](_app_author, "")
+          _app_author
           _app_name
           "Cache"
         ])
@@ -220,7 +220,7 @@ class AppDirs
             "XDG_STATE_HOME",
             "~/.local/state"))?
         _app_name
-        Opt.get[String](_app_version, "")
+        _app_version
       ])
     end
 
@@ -234,7 +234,7 @@ class AppDirs
         "Library"
         "Logs"
         _app_name
-        Opt.get[String](_app_version, "")
+        _app_version
       ])
     elseif windows then
       user_data_dir()?

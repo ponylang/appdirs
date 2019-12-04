@@ -3,7 +3,6 @@ version: "{build}"
 image: Visual Studio 2017
 
 configuration:
-  - release
   - debug
 
 clone_depth: 100

@@ -44,12 +44,12 @@ if errorlevel 1 goto error
 goto done
 
 :test
-if not exist %BUILDDIR%\test.exe (
+if not exist %BUILDDIR%\appdirs.exe (
   stable fetch
-  stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%\test
+  stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%
 )
 if errorlevel 1 goto error
-%BUILDDIR%\test.exe
+%BUILDDIR%\appdirs.exe
 if errorlevel 1 goto error
 goto done
 

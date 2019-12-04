@@ -1,6 +1,5 @@
 use "files"
 use "cli" // for EnvVars
-use "maybe"
 use "itertools"
 use "collections"
 
@@ -9,19 +8,28 @@ primitive Paths
     Iter[String](paths.values())
       .fold[String]("", {(acc, cur) => Path.join(acc, cur)})
 
+type _Maybe[T] is (T | None)
+
+primitive _Opt
+  fun get[T](s: _Maybe[T], or_else: T): T =>
+    match consume s
+    | let value: T => consume value
+    | None => consume or_else
+    end
+
 class AppDirs
-  let _home: Maybe[String]
+  let _home: _Maybe[String]
   let _env_vars: Map[String, String] val
   let _app_name: String
-  let _app_author: Maybe[String]
-  let _app_version: Maybe[String]
+  let _app_author: _Maybe[String]
+  let _app_version: _Maybe[String]
   let _roaming: Bool
 
   new create(
-    env_vars: Maybe[Array[String] box],
+    env_vars: _Maybe[Array[String] box],
     app_name: String,
-    app_author: Maybe[String] = None,
-    app_version: Maybe[String] = None,
+    app_author: _Maybe[String] = None,
+    app_version: _Maybe[String] = None,
     roaming: Bool = false)
   =>
     _env_vars = EnvVars(env_vars)
@@ -57,7 +65,7 @@ class AppDirs
           end
         Paths.join([
           KnownFolders(folder_id)?
-          Opt.get[String](_app_author, "")
+          _Opt.get[String](_app_author, "")
           _app_name
         ])
       else
@@ -87,7 +95,7 @@ class AppDirs
           [
             Paths.join([
               KnownFolders(KnownFolderIds.program_data())?
-              Opt.get[String](_app_author, "")
+              _Opt.get[String](_app_author, "")
               _app_name
             ])
           ] end
@@ -189,7 +197,7 @@ class AppDirs
           KnownFolders(KnownFolderIds.app_data_local())?
         Paths.join([
           known_folder
-          Opt.get[String](_app_author, "")
+          _Opt.get[String](_app_author, "")
           _app_name
           "Cache"
         ])
@@ -220,7 +228,7 @@ class AppDirs
             "XDG_STATE_HOME",
             "~/.local/state"))?
         _app_name
-        Opt.get[String](_app_version, "")
+        _Opt.get[String](_app_version, "")
       ])
     end
 
@@ -234,7 +242,7 @@ class AppDirs
         "Library"
         "Logs"
         _app_name
-        Opt.get[String](_app_version, "")
+        _Opt.get[String](_app_version, "")
       ])
     elseif windows then
       user_data_dir()?

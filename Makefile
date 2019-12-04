@@ -1,7 +1,7 @@
 config ?= release
 
 PACKAGE := appdirs
-COMPILE_WITH := stable env ponyc
+COMPILE_WITH := ponyc
 
 BUILD_DIR ?= build/$(config)
 SRC_DIR := $(PACKAGE)

@@ -1,4 +1,4 @@
-# aUppdirs
+# appdirs
 
 Library for detecting platform specific user directories e.g. for data, config, cache, logs.
 
@@ -6,7 +6,7 @@ Most stuff is copied from the python library [appdirs](https://github.com/Active
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/ponylang/pony-appdirs.svg?style=svg)](https://circleci.com/gh/ponylang/pony-appdirs) [![Build status](https://ci.appveyor.com/api/projects/status/mns3ld1foja8mo7n/branch/master?svg=true)](https://ci.appveyor.com/project/ponylang/pony-appdirs/branch/master) [![Build Status](https://travis-ci.org/ponylang/pony-appdirs.svg?branch=master)](https://travis-ci.org/ponylang/pony-appdirs)
+[![Actions Status](https://github.com/ponylang/appdirs/workflows/vs-ponyc-latest/badge.svg)](https://github.com/ponylang/appdirs/actions)
 
 ## Installation
 

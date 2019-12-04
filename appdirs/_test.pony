@@ -12,6 +12,7 @@ actor Main is TestList
     test(AppDirsAppAuthorTest)
     test(AppDirsWindowsRoamingTest)
     test(AppDirsUnixXDGVarsTest)
+    test(AppDirsOsxAsUnixTest)
 
 primitive _ExpectError
 
@@ -376,4 +377,32 @@ class AppDirsUnixXDGVarsTest is UnitTest
                 user_log_dir' = "/home/ed/.kache/appdirs/log")
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
+
+class AppDirsOsxAsUnixTest is UnitTest
+  fun name(): String => "appdirs/osx_as_unix"
+  fun apply(h: TestHelper) ? =>
+    let env_vars = [
+      "HOME=" + _AppDirsTestUtil.test_home()
+      "XDG_DATA_HOME=~/.my_own/data"
+      "XDG_DATA_DIRS=/etc/bla/:/blubb"
+      "XDG_CONFIG_HOME=/home/ed/.my_config"
+      "XDG_CONFIG_DIRS=/config/a b c"
+      "XDG_CACHE_HOME=~/.kache"
+      "XDG_STATE_HOME=~/~/~/.state"
+    ]
+
+    let app_dirs = AppDirs(env_vars, "app_dirs" where osx_as_unix = true)
+    ifdef osx then
+      let expected = _ExpectedAppDirs(
+        where home_dir' = _AppDirsTestUtil.test_home(),
+              user_data_dir' = "/home/ed/.my_own/data/appdirs",
+              site_data_dirs' = ["/etc/bla/appdirs"; "/blubb/appdirs"],
+              user_config_dir' = "/home/ed/.my_config/appdirs",
+              site_config_dirs' = ["/config/a b c/appdirs"],
+              user_cache_dir' = "/home/ed/.kache/appdirs",
+              user_state_dir' = "/home/ed/home/ed/home/ed/.state/appdirs",
+              user_log_dir' = "/home/ed/.kache/appdirs/log")
+      _AppDirsTestUtil.test(app_dirs, expected, h)?
+    end
+
 

@@ -1,5 +1,4 @@
 use "ponytest"
-use ".."
 use "cli"
 
 actor Main is TestList

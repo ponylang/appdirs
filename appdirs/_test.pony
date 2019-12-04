@@ -391,7 +391,7 @@ class AppDirsOsxAsUnixTest is UnitTest
       "XDG_STATE_HOME=~/~/~/.state"
     ]
 
-    let app_dirs = AppDirs(env_vars, "app_dirs" where osx_as_unix = true)
+    let app_dirs = AppDirs(env_vars, "appdirs" where osx_as_unix = true)
     ifdef osx then
       let expected = _ExpectedAppDirs(
         where home_dir' = _AppDirsTestUtil.test_home(),

@@ -400,7 +400,7 @@ class AppDirsOsxAsUnixTest is UnitTest
               user_config_dir' = "/Users/ed/.my_config/appdirs",
               site_config_dirs' = ["/config/a b c/appdirs"],
               user_cache_dir' = "/Users/ed/.kache/appdirs",
-              user_state_dir' = "/Users/ed/home/ed/home/ed/.state/appdirs",
+              user_state_dir' = "/Users/ed/Users/ed/Users/ed/.state/appdirs",
               user_log_dir' = "/Users/ed/.kache/appdirs/log")
       _AppDirsTestUtil.test(app_dirs, expected, h)?
     end

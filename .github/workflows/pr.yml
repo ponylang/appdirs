@@ -22,3 +22,13 @@ jobs:
       - uses: actions/checkout@v1
       - name: Test
         run: make test config=debug
+
+  macOS:
+    name: Test against recent ponyc release on macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: brew install ponyc pony-stable
+      - name: Test
+        run: make test config=debug

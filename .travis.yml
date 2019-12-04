@@ -6,4 +6,4 @@ install:
   - brew install ponyc pony-stable
 
 script:
-  - make test selftest
+  - make test

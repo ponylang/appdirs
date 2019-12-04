@@ -1,9 +1,0 @@
-language: c
-os: osx
-
-install:
-  - brew update
-  - brew install ponyc pony-stable
-
-script:
-  - make test

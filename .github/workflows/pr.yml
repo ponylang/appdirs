@@ -29,6 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: brew install ponyc pony-stable
+        run: bash .ci-scripts/macOS-install-pony-tools.bash
       - name: Test
-        run: make test config=debug
+        run: |
+          export PATH="$HOME/.local/share/ponyup/bin/:$PATH"
+          make test config=debug

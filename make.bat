@@ -4,8 +4,8 @@ set TARGET=appdirs
 if "%1"=="help" goto usage
 if "%1"=="--help" goto usage
 
-where stable > nul
-if errorlevel 1 goto nostable
+where corral > nul
+if errorlevel 1 goto nocorral
 where ponyc > nul
 if errorlevel 1 goto noponyc
 
@@ -34,19 +34,19 @@ if "%1"=="fetch" goto fetch
 
 :build
 if not exist "%BUILDDIR%" mkdir "%BUILDDIR%""
-stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%
+corral run -- ponyc %DEBUG% -o %BUILDDIR% %TARGET%
 if errorlevel 1 goto error
 goto done
 
 :fetch
-stable fetch
+corral fetch
 if errorlevel 1 goto error
 goto done
 
 :test
 if not exist %BUILDDIR%\appdirs.exe (
-  stable fetch
-  stable env ponyc %DEBUG% -o %BUILDDIR% %TARGET%
+  corral fetch
+  corral run -- ponyc %DEBUG% -o %BUILDDIR% %TARGET%
 )
 if errorlevel 1 goto error
 %BUILDDIR%\appdirs.exe
@@ -61,8 +61,8 @@ goto done
 echo Usage: make (help^|clean^|build^|test) [config=debug^|release]
 goto done
 
-:nostable
-echo You need "stable.exe" (from https://github.com/ponylang/pony-stable) in your PATH.
+:nocorral
+echo You need "corral.exe" (from https://github.com/ponylang/corral) in your PATH.
 goto error
 
 :noponyc

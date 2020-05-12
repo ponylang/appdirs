@@ -35,7 +35,6 @@ jobs:
           export PATH="$HOME/.local/share/ponyup/bin/:$PATH"
           make test config=debug
 
-
   vs-ponyc-release-windows:
     name: Test against recent ponyc release on Windows
     runs-on: windows-latest
@@ -49,4 +48,4 @@ jobs:
           Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/corral-x86-64-pc-windows-msvc.zip -OutFile C:\corral.zip;
           Expand-Archive -Path C:\corral.zip -DestinationPath C:\corral;
           $env:PATH = 'C:\corral\bin;' + $env:PATH;
-          cmd.exe .\make.bat test
+          .\make.ps1 test

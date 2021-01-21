@@ -17,4 +17,3 @@ Appdirs is an alpha-level package.
 * `corral fetch` to fetch your dependencies
 * `use "appdirs"` to include this package
 * `corral run -- ponyc` to compile your application
-

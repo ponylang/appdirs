@@ -1,3 +1,10 @@
+"""
+# AppDirs
+
+Library for detecting platform specific user directories e.g. for data, config, cache, logs.
+
+Most stuff is copied from the python library [appdirs](https://github.com/ActiveState/appdirs) from ActiveState.
+"""
 use "files"
 use "cli" // for EnvVars
 use "itertools"

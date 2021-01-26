@@ -6,8 +6,6 @@ Most stuff is copied from the python library [appdirs](https://github.com/Active
 
 ## Status
 
-[![Actions Status](https://github.com/ponylang/appdirs/workflows/vs-ponyc-latest/badge.svg)](https://github.com/ponylang/appdirs/actions)
-
 Appdirs is an beta-level package.
 
 ## Installation

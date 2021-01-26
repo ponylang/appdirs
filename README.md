@@ -6,7 +6,7 @@ Most stuff is copied from the python library [appdirs](https://github.com/Active
 
 ## Status
 
-Appdirs is an alpha-level package.
+Appdirs is an beta-level package.
 
 ## Installation
 

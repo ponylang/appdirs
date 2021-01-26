@@ -15,3 +15,7 @@ Appdirs is an beta-level package.
 * `corral fetch` to fetch your dependencies
 * `use "appdirs"` to include this package
 * `corral run -- ponyc` to compile your application
+
+## API Documentation
+
+[https://ponylang.github.io/appdirs](https://ponylang.github.io/appdirs)

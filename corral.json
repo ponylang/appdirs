@@ -1,4 +1,12 @@
 {
+  "packages": ["appdirs"],
   "deps": [],
-  "info": {}
+  "info": {
+    "description": "Library for getting platform-specific application directories e.g. directory for user-based config",
+    "homepage": "https://github.com/ponylang/appdirs",
+    "license": "BSD-2-Clause",
+    "documentation_url": "https://ponylang.github.io/appdirs/",
+    "version": "0.1.0",
+    "name": "appdirs"
+  }
 }

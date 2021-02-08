@@ -1,3 +1,3 @@
 # Style Guide
 
-pony-appdirs follows the [Pony standard library Style Guide](https://github.com/ponylang/ponyc/blob/master/STYLE_GUIDE.md).
+pony-appdirs follows the [Pony standard library Style Guide](https://github.com/ponylang/ponyc/blob/main/STYLE_GUIDE.md).

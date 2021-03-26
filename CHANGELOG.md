@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Declare all FFI functions ([PR #30](https://github.com/ponylang/appdirs/pull/30))
 
 ## [0.1.1] - 2021-02-08
 

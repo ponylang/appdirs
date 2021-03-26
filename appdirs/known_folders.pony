@@ -2,6 +2,13 @@ use "lib:shell32" if windows
 use "lib:ole32" if windows
 use "debug"
 
+use @SHGetKnownFolderPath[U32](rfid: Pointer[U8] tag, flags: U32,
+  token: Pointer[U32], path: Pointer[Pointer[U16]]) if windows
+use @WideCharToMultiByte[I32](code_page: U32, flags: U32, char_str: Pointer[U16],
+  char_str_size: I32, multi_byte_str: Pointer[U8] tag, multi_byte_str_size: I32,
+  default_char: Pointer[U8], used_default_char: Pointer[U8]) if windows
+use @CoTaskMemFree[None](pv: Pointer[U16] tag) if windows
+
 primitive KnownFolderIds
   """
   Known folder ids as described in:
@@ -67,7 +74,7 @@ primitive KnownFolders
       // get UTF-16 wide-char path from windows API
       var path_pointer: Pointer[U16] = Pointer[U16]
       let result: U32 =
-        @SHGetKnownFolderPath[U32](
+        @SHGetKnownFolderPath(
           folderid.cpointer(), // REFKNOWNFOLDERID
           U32(0), // retrieval flags -- no flags
           Pointer[U32], // some strange handle, pass NULL
@@ -79,9 +86,9 @@ primitive KnownFolders
       end
 
       // extract path from path_pointer
-      let bytes_necessary: I32 = @WideCharToMultiByte[I32](
+      let bytes_necessary: I32 = @WideCharToMultiByte(
           WindowsCodePages.utf8(),
-          USize(0),
+          U32(0),
           path_pointer,
           I32(-1), // length of path pointer, -1 for null terminated
           Pointer[U8].create(),
@@ -91,13 +98,13 @@ primitive KnownFolders
       )
       let utf8_path: Array[U8] iso = recover Array[U8](bytes_necessary.usize()) end
       utf8_path.undefined(bytes_necessary.usize())
-      let convert_result: I32 = @WideCharToMultiByte[I32](
+      let convert_result: I32 = @WideCharToMultiByte(
           WindowsCodePages.utf8(),
-          USize(0),
+          U32(0),
           path_pointer,
           I32(-1), // length of path pointer, -1 for null terminated
           utf8_path.cpointer(),
-          utf8_path.size(),
+          utf8_path.size().i32(),
           Pointer[U8].create(), // NULL
           Pointer[U8].create()  // NULL
       )
@@ -105,7 +112,7 @@ primitive KnownFolders
           Debug("error converting from wchar to utf8.")
           error
       end
-      @CoTaskMemFree[None](path_pointer)
+      @CoTaskMemFree(path_pointer)
 
       try utf8_path.pop()? end // remove 0 terminator
       String.from_iso_array(consume utf8_path)

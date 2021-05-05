@@ -116,7 +116,7 @@ class AppDirsDefaultsTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + _AppDirsTestUtil.test_home()
+      as String: "HOME=" + _AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs")
     let expected =
@@ -159,7 +159,7 @@ class AppDirsVersionTest is UnitTest
   fun name(): String => "appdirs/version"
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + _AppDirsTestUtil.test_home()
+      as String: "HOME=" + _AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs" where app_version="0.4")
     let expected =
@@ -244,7 +244,7 @@ class AppDirsAppAuthorTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + _AppDirsTestUtil.test_home()
+      as String: "HOME=" + _AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs", "Matthias Wahl")
     let expected =
@@ -288,7 +288,7 @@ class AppDirsWindowsRoamingTest is UnitTest
 
   fun apply(h: TestHelper) ? =>
     let env_vars = [
-      "HOME=" + _AppDirsTestUtil.test_home()
+      as String: "HOME=" + _AppDirsTestUtil.test_home()
     ]
     let app_dirs = AppDirs(env_vars, "appdirs" where roaming = true)
     let expected =

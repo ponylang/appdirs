@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Don't export test classes ([PR #32](https://github.com/ponylang/appdirs/pull/32))
 
 ## [0.1.3] - 2021-05-06
 

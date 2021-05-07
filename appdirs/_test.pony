@@ -6,13 +6,13 @@ actor Main is TestList
     PonyTest(env, this)
 
   fun tag tests(test: PonyTest) =>
-    test(AppDirsDefaultsTest)
-    test(AppDirsVersionTest)
-    test(AppDirsNoHomeTest)
-    test(AppDirsAppAuthorTest)
-    test(AppDirsWindowsRoamingTest)
-    test(AppDirsUnixXDGVarsTest)
-    test(AppDirsOsxAsUnixTest)
+    test(_AppDirsDefaultsTest)
+    test(_AppDirsVersionTest)
+    test(_AppDirsNoHomeTest)
+    test(_AppDirsAppAuthorTest)
+    test(_AppDirsWindowsRoamingTest)
+    test(_AppDirsUnixXDGVarsTest)
+    test(_AppDirsOsxAsUnixTest)
 
 primitive _ExpectError
 
@@ -111,7 +111,7 @@ primitive _AppDirsTestUtil
     end
 
 
-class AppDirsDefaultsTest is UnitTest
+class _AppDirsDefaultsTest is UnitTest
   fun name(): String => "appdirs/defaults"
 
   fun apply(h: TestHelper) ? =>
@@ -155,7 +155,7 @@ class AppDirsDefaultsTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class AppDirsVersionTest is UnitTest
+class _AppDirsVersionTest is UnitTest
   fun name(): String => "appdirs/version"
   fun apply(h: TestHelper) ? =>
     let env_vars = [
@@ -197,7 +197,7 @@ class AppDirsVersionTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class AppDirsNoHomeTest is UnitTest
+class _AppDirsNoHomeTest is UnitTest
   fun name(): String => "appdirs/no_home"
 
   fun apply(h: TestHelper) ? =>
@@ -239,7 +239,7 @@ class AppDirsNoHomeTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class AppDirsAppAuthorTest is UnitTest
+class _AppDirsAppAuthorTest is UnitTest
   fun name(): String => "appdirs/app_author"
 
   fun apply(h: TestHelper) ? =>
@@ -283,7 +283,7 @@ class AppDirsAppAuthorTest is UnitTest
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
 
-class AppDirsWindowsRoamingTest is UnitTest
+class _AppDirsWindowsRoamingTest is UnitTest
   fun name(): String => "appdirs/roaming"
 
   fun apply(h: TestHelper) ? =>
@@ -328,7 +328,7 @@ class AppDirsWindowsRoamingTest is UnitTest
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
 
-class AppDirsUnixXDGVarsTest is UnitTest
+class _AppDirsUnixXDGVarsTest is UnitTest
   fun name(): String => "appdirs/xdg_vars"
 
   fun apply(h: TestHelper) ? =>
@@ -378,7 +378,7 @@ class AppDirsUnixXDGVarsTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class AppDirsOsxAsUnixTest is UnitTest
+class _AppDirsOsxAsUnixTest is UnitTest
   fun name(): String => "appdirs/osx_as_unix"
   fun apply(h: TestHelper) ? =>
     let env_vars = [

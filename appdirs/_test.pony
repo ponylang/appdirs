@@ -1,7 +1,7 @@
 use "ponytest"
 use "cli"
 
-actor Main is TestList
+actor \nodoc\ Main is TestList
   new create(env: Env) =>
     PonyTest(env, this)
 
@@ -14,11 +14,11 @@ actor Main is TestList
     test(_AppDirsUnixXDGVarsTest)
     test(_AppDirsOsxAsUnixTest)
 
-primitive _ExpectError
+primitive  \nodoc\ _ExpectError
 
 type _ErrorOr[T] is ( T | _ExpectError )
 
-class _ExpectedAppDirs
+class  \nodoc\ _ExpectedAppDirs
   let home_dir: _ErrorOr[String]
   let user_data_dir: _ErrorOr[String]
   let site_data_dirs: _ErrorOr[Array[String] val]
@@ -48,7 +48,7 @@ class _ExpectedAppDirs
 
 
 
-primitive _AppDirsTestUtil
+primitive  \nodoc\ _AppDirsTestUtil
   fun test(app_dirs: AppDirs, expected: _ExpectedAppDirs, h: TestHelper, loc: SourceLoc = __loc) ? =>
     match expected.home_dir
     | _ExpectError =>
@@ -111,7 +111,7 @@ primitive _AppDirsTestUtil
     end
 
 
-class _AppDirsDefaultsTest is UnitTest
+class \nodoc\ _AppDirsDefaultsTest is UnitTest
   fun name(): String => "appdirs/defaults"
 
   fun apply(h: TestHelper) ? =>
@@ -155,7 +155,7 @@ class _AppDirsDefaultsTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class _AppDirsVersionTest is UnitTest
+class \nodoc\ _AppDirsVersionTest is UnitTest
   fun name(): String => "appdirs/version"
   fun apply(h: TestHelper) ? =>
     let env_vars = [
@@ -197,7 +197,7 @@ class _AppDirsVersionTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class _AppDirsNoHomeTest is UnitTest
+class \nodoc\_AppDirsNoHomeTest is UnitTest
   fun name(): String => "appdirs/no_home"
 
   fun apply(h: TestHelper) ? =>
@@ -239,7 +239,7 @@ class _AppDirsNoHomeTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class _AppDirsAppAuthorTest is UnitTest
+class \nodoc\ _AppDirsAppAuthorTest is UnitTest
   fun name(): String => "appdirs/app_author"
 
   fun apply(h: TestHelper) ? =>
@@ -283,7 +283,7 @@ class _AppDirsAppAuthorTest is UnitTest
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
 
-class _AppDirsWindowsRoamingTest is UnitTest
+class \nodoc\ _AppDirsWindowsRoamingTest is UnitTest
   fun name(): String => "appdirs/roaming"
 
   fun apply(h: TestHelper) ? =>
@@ -328,7 +328,7 @@ class _AppDirsWindowsRoamingTest is UnitTest
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
 
-class _AppDirsUnixXDGVarsTest is UnitTest
+class \nodoc\ _AppDirsUnixXDGVarsTest is UnitTest
   fun name(): String => "appdirs/xdg_vars"
 
   fun apply(h: TestHelper) ? =>
@@ -378,7 +378,7 @@ class _AppDirsUnixXDGVarsTest is UnitTest
       end
     _AppDirsTestUtil.test(app_dirs, expected, h)?
 
-class _AppDirsOsxAsUnixTest is UnitTest
+class \nodoc\ _AppDirsOsxAsUnixTest is UnitTest
   fun name(): String => "appdirs/osx_as_unix"
   fun apply(h: TestHelper) ? =>
     let env_vars = [

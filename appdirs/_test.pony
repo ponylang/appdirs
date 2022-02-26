@@ -1,4 +1,4 @@
-use "ponytest"
+use "pony_test"
 use "cli"
 
 actor \nodoc\ Main is TestList

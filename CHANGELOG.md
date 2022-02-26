@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Fixed
 
+- Update to address PonyTest package being renamed ([PR #40](https://github.com/ponylang/appdirs/pull/40))
 
 ### Added
 

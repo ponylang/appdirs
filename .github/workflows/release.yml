@@ -11,6 +11,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  packages: read
 
 jobs:
   # validation to assure that we should in fact continue with the release should
@@ -36,15 +37,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/ponylang/library-documentation-action-v2:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Generate documentation
-        uses: docker://ponylang/library-documentation-action-v2:latest
-        with:
-          site_url: "https://ponylang.github.io/appdirs/"
-          library_name: "appdirs"
-          docs_build_dir: "build/appdirs-docs"
+        run: /entrypoint.py
+        env:
+          INPUT_SITE_URL: "https://ponylang.github.io/appdirs/"
+          INPUT_LIBRARY_NAME: "appdirs"
+          INPUT_DOCS_BUILD_DIR: "build/appdirs-docs"
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact

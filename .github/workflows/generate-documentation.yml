@@ -20,10 +20,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Generate documentation
-        uses: docker://ponylang/library-documentation-action-v2:latest
+        uses: docker://ghcr.io/ponylang/library-documentation-action-v2:latest
         with:
           site_url: "https://ponylang.github.io/appdirs/"
           library_name: appdirs"

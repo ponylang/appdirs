@@ -37,6 +37,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs:
+      - pre-artefact-creation
     container:
       image: ghcr.io/ponylang/library-documentation-action-v2:release
     steps:

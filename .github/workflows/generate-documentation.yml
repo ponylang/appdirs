@@ -26,7 +26,7 @@ jobs:
         uses: docker://ponylang/library-documentation-action-v2:latest
         with:
           site_url: "https://ponylang.github.io/appdirs/"
-          library_name: appdirs"
+          library_name: "appdirs"
           docs_build_dir: "build/appdirs-docs"
       - name: Setup Pages
         uses: actions/configure-pages@v2

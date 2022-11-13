@@ -17,6 +17,7 @@ esac
 # Libresll is required for ponyup
 #
 
+brew update
 brew install libressl
 
 #

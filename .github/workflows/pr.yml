@@ -42,13 +42,13 @@ jobs:
       - name: Test
         run: make test config=debug
 
-  vs-ponyc-release-macOS:
-    name: Test against recent ponyc release on macOS
-    runs-on: macos-latest
+  vs-ponyc-release-macOS-x86_64:
+    name: Test against recent ponyc release on x86-64 macOS
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: bash .ci-scripts/macOS-install-pony-tools.bash release
+        run: bash .ci-scripts/macOS-install-pony-tools.bash nightly
       - name: Test
         run: |
           export PATH="$HOME/.local/share/ponyup/bin/:$PATH"

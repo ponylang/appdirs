@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: bash .ci-scripts/macOS-install-pony-tools.bash nightly
+        run: bash .ci-scripts/macOS-install-pony-tools.bash release
       - name: Test
         run: |
           export PATH="$HOME/.local/share/ponyup/bin/:$PATH"

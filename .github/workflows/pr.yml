@@ -44,7 +44,7 @@ jobs:
 
   vs-ponyc-release-macOS-x86_64:
     name: Test against recent ponyc release on x86-64 macOS
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4.1.1
       - name: Install dependencies

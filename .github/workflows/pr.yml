@@ -59,7 +59,7 @@ jobs:
 
   vs-ponyc-release-windows:
     name: Test against recent ponyc release on Windows
-    runs-on: windows-2022
+    runs-on: windows-2025
     steps:
       - uses: actions/checkout@v4.1.1
       - name: Test with most recent ponyc release

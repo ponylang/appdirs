@@ -10,6 +10,13 @@ use "cli" // for EnvVars
 use "itertools"
 use "collections"
 
+primitive _Osx
+primitive _OsxAsUnix
+primitive _Unix
+primitive _Windows
+
+type _Platform is (_Osx | _OsxAsUnix | _Unix | _Windows)
+
 primitive Paths
   fun join(paths: ReadSeq[String]): String =>
     Iter[String](paths.values())
@@ -31,7 +38,7 @@ class AppDirs
   let _app_author: _Maybe[String]
   let _app_version: _Maybe[String]
   let _roaming: Bool
-  let _osx_as_unix: Bool
+  let _platform: _Platform
 
   new create(
     env_vars: _Maybe[Array[String] box],
@@ -57,7 +64,14 @@ class AppDirs
     _app_author = app_author
     _app_version = app_version
     _roaming = roaming
-    _osx_as_unix = osx_as_unix
+
+    _platform = ifdef windows then
+      _Windows
+    elseif osx then
+      if osx_as_unix then _OsxAsUnix else _Osx end
+    else
+      _Unix
+    end
 
     _home = ifdef windows then
       try KnownFolders(KnownFolderIds.profile())? end
@@ -76,27 +90,27 @@ class AppDirs
     Returns the full path to the user-specific data dir for this application.
     """
     let os_specific_dir =
-      ifdef osx then
-        if _osx_as_unix then
-          _unix_user_data_dir()?
-        else
-          Paths.join([_home as String; "Library"; "Application Support"; _app_name])
-        end
-      elseif windows then
-        let folder_id =
-          if _roaming then
-            KnownFolderIds.app_data_roaming()
-          else
-            KnownFolderIds.app_data_local()
-          end
-        Paths.join([
-          KnownFolders(folder_id)?
-          _Opt.get[String](_app_author, "")
-          _app_name
-        ])
-      else
-        // *nix
+      match _platform
+      | _Osx =>
+        Paths.join([_home as String; "Library"; "Application Support"; _app_name])
+      | _OsxAsUnix | _Unix =>
         _unix_user_data_dir()?
+      | _Windows =>
+        ifdef windows then
+          let folder_id =
+            if _roaming then
+              KnownFolderIds.app_data_roaming()
+            else
+              KnownFolderIds.app_data_local()
+            end
+          Paths.join([
+            KnownFolders(folder_id)?
+            _Opt.get[String](_app_author, "")
+            _app_name
+          ])
+        else
+          ""
+        end
       end
     match _app_version
     | None => os_specific_dir
@@ -117,24 +131,24 @@ class AppDirs
     Returns an array of full paths to the user-shared data dirs for this application.
     """
     let os_specific_dirs: Array[String] iso =
-      ifdef osx then
-        if _osx_as_unix then
-          _unix_site_data_dirs()?
-        else
-          recover [Path.join("/Library/Application Support", _app_name)] end
-        end
-      elseif windows then
-        recover
-          [
-            Paths.join([
-              KnownFolders(KnownFolderIds.program_data())?
-              _Opt.get[String](_app_author, "")
-              _app_name
-            ])
-          ] end
-      else
-        //*nix
+      match _platform
+      | _Osx =>
+        recover [Path.join("/Library/Application Support", _app_name)] end
+      | _OsxAsUnix | _Unix =>
         _unix_site_data_dirs()?
+      | _Windows =>
+        ifdef windows then
+          recover
+            [
+              Paths.join([
+                KnownFolders(KnownFolderIds.program_data())?
+                _Opt.get[String](_app_author, "")
+                _app_name
+              ])
+            ] end
+        else
+          recover Array[String] end
+        end
       end
     match _app_version
     | let v: String =>
@@ -162,26 +176,20 @@ class AppDirs
     """
     Return full path to the user-specific config dir for this application.
     """
-    ifdef windows then
-      user_data_dir()?
-    else
-      let os_specific_dir =
-        ifdef osx then
-          if _osx_as_unix then
-            _unix_user_config_dir()?
-          else
-            Paths.join([_home as String; "Library"; "Preferences"; _app_name])
-          end
-        else
-          // *nix
-          _unix_user_config_dir()?
-        end
-
-      // apply version
-      match _app_version
-      | None => os_specific_dir
-      | let v: String => Path.join(os_specific_dir, v)
+    let os_specific_dir =
+      match _platform
+      | _Osx =>
+        Paths.join([_home as String; "Library"; "Preferences"; _app_name])
+      | _OsxAsUnix | _Unix =>
+        _unix_user_config_dir()?
+      | _Windows =>
+        return user_data_dir()?
       end
+
+    // apply version
+    match _app_version
+    | None => os_specific_dir
+    | let v: String => Path.join(os_specific_dir, v)
     end
 
   fun _unix_user_config_dir(): String ? =>
@@ -197,29 +205,23 @@ class AppDirs
     """
     Return full path to the user-shared config dirs for this application.
     """
-    ifdef windows then
-      site_data_dirs()?
-    else
-      let os_specific_dirs: Array[String] iso =
-        ifdef osx then
-          if _osx_as_unix then
-            _unix_site_config_dirs()?
-          else
-            recover [Path.join("/Library/Preferences", _app_name)] end
-          end
-        else
-          //*nix
-          _unix_site_config_dirs()?
-        end
-
-      match _app_version
-      | let v: String =>
-        for i in Range[USize](0, os_specific_dirs.size()) do
-          os_specific_dirs(i)? = Path.join(os_specific_dirs(i)?, v)
-        end
+    let os_specific_dirs: Array[String] iso =
+      match _platform
+      | _Osx =>
+        recover [Path.join("/Library/Preferences", _app_name)] end
+      | _OsxAsUnix | _Unix =>
+        _unix_site_config_dirs()?
+      | _Windows =>
+        return site_data_dirs()?
       end
-      os_specific_dirs
+
+    match _app_version
+    | let v: String =>
+      for i in Range[USize](0, os_specific_dirs.size()) do
+        os_specific_dirs(i)? = Path.join(os_specific_dirs(i)?, v)
+      end
     end
+    os_specific_dirs
 
   fun _unix_site_config_dirs(): Array[String] iso^ ? =>
     let config_dirs: Array[String] iso =
@@ -240,24 +242,24 @@ class AppDirs
     Return full path to the user-specific cache dir for this application.
     """
     let os_specific_dir =
-      ifdef osx then
-        if _osx_as_unix then
-          _unix_user_cache_dir()?
-        else
-          Paths.join([_home as String; "Library"; "Caches"; _app_name])
-        end
-      elseif windows then
-        let known_folder: String val =
-          KnownFolders(KnownFolderIds.app_data_local())?
-        Paths.join([
-          known_folder
-          _Opt.get[String](_app_author, "")
-          _app_name
-          "Cache"
-        ])
-      else
-        // *nix
+      match _platform
+      | _Osx =>
+        Paths.join([_home as String; "Library"; "Caches"; _app_name])
+      | _OsxAsUnix | _Unix =>
         _unix_user_cache_dir()?
+      | _Windows =>
+        ifdef windows then
+          let known_folder: String val =
+            KnownFolders(KnownFolderIds.app_data_local())?
+          Paths.join([
+            known_folder
+            _Opt.get[String](_app_author, "")
+            _app_name
+            "Cache"
+          ])
+        else
+          ""
+        end
       end
     match _app_version
     | None => os_specific_dir
@@ -275,16 +277,10 @@ class AppDirs
 
     See https://wiki.debian.org/XDGBaseDirectorySpecification#state
     """
-    ifdef osx then
-      if _osx_as_unix then
-        _unix_user_state_dir()?
-      else
-        user_data_dir()?
-      end
-    elseif windows then
+    match _platform
+    | _Osx | _Windows =>
       user_data_dir()?
-    else
-      // *nix
+    | _OsxAsUnix | _Unix =>
       _unix_user_state_dir()?
     end
 
@@ -302,23 +298,19 @@ class AppDirs
     """
     Return full path to the user-specific log dir for this application.
     """
-    ifdef osx then
-      if _osx_as_unix then
-        _unix_user_log_dir()?
-      else
-        Paths.join([
-          _home as String
-          "Library"
-          "Logs"
-          _app_name
-          _Opt.get[String](_app_version, "")
-        ])
-      end
-    elseif windows then
-      user_data_dir()?
-    else
-      // *nix
+    match _platform
+    | _Osx =>
+      Paths.join([
+        _home as String
+        "Library"
+        "Logs"
+        _app_name
+        _Opt.get[String](_app_version, "")
+      ])
+    | _OsxAsUnix | _Unix =>
       _unix_user_log_dir()?
+    | _Windows =>
+      user_data_dir()?
     end
 
   fun _unix_user_log_dir(): String ? =>

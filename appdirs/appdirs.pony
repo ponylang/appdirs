@@ -37,7 +37,7 @@ type _Maybe[T] is (T | None)
 
 primitive _Opt
   fun get[T](s: _Maybe[T], or_else: T): T =>
-    match consume s
+    match \exhaustive\ consume s
     | let value: T => consume value
     | None => consume or_else
     end
@@ -126,7 +126,7 @@ class AppDirs
     dir for this application.
     """
     let os_specific_dir =
-      match _platform
+      match \exhaustive\ _platform
       | _Osx =>
         Paths.join(
           [ _home as String
@@ -153,7 +153,7 @@ class AppDirs
           ""
         end
       end
-    match _app_version
+    match \exhaustive\ _app_version
     | None => os_specific_dir
     | let v: String => Path.join(os_specific_dir, v)
     end
@@ -175,7 +175,7 @@ class AppDirs
     data dirs for this application.
     """
     let os_specific_dirs: Array[String] iso =
-      match _platform
+      match \exhaustive\ _platform
       | _Osx =>
         recover
           [ Path.join(
@@ -239,7 +239,7 @@ class AppDirs
     for this application.
     """
     let os_specific_dir =
-      match _platform
+      match \exhaustive\ _platform
       | _Osx =>
         Paths.join(
           [ _home as String
@@ -254,7 +254,7 @@ class AppDirs
       end
 
     // apply version
-    match _app_version
+    match \exhaustive\ _app_version
     | None => os_specific_dir
     | let v: String =>
       Path.join(os_specific_dir, v)
@@ -275,7 +275,7 @@ class AppDirs
     for this application.
     """
     let os_specific_dirs: Array[String] iso =
-      match _platform
+      match \exhaustive\ _platform
       | _Osx =>
         recover
           [ Path.join(
@@ -326,7 +326,7 @@ class AppDirs
     for this application.
     """
     let os_specific_dir =
-      match _platform
+      match \exhaustive\ _platform
       | _Osx =>
         Paths.join(
           [ _home as String
@@ -351,7 +351,7 @@ class AppDirs
           ""
         end
       end
-    match _app_version
+    match \exhaustive\ _app_version
     | None => os_specific_dir
     | let v: String => Path.join(os_specific_dir, v)
     end
@@ -371,7 +371,7 @@ class AppDirs
     See:
     https://wiki.debian.org/XDGBaseDirectorySpecification#state
     """
-    match _platform
+    match \exhaustive\ _platform
     | _Osx | _Windows =>
       user_data_dir()?
     | _OsxAsUnix | _Unix =>
@@ -393,7 +393,7 @@ class AppDirs
     Return full path to the user-specific log dir
     for this application.
     """
-    match _platform
+    match \exhaustive\ _platform
     | _Osx =>
       Paths.join(
         [ _home as String

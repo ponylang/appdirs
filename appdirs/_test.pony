@@ -54,7 +54,7 @@ primitive \nodoc\ _AppDirsTestUtil
     h: TestHelper,
     loc: SourceLoc = __loc) ?
   =>
-    match expected.home_dir
+    match \exhaustive\ expected.home_dir
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.user_home_dir()? }
@@ -65,7 +65,7 @@ primitive \nodoc\ _AppDirsTestUtil
         app_dirs.user_home_dir()?
         where loc = loc)
     end
-    match expected.user_data_dir
+    match \exhaustive\ expected.user_data_dir
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.user_data_dir()? }
@@ -76,7 +76,7 @@ primitive \nodoc\ _AppDirsTestUtil
         app_dirs.user_data_dir()?
         where loc = loc)
     end
-    match expected.site_data_dirs
+    match \exhaustive\ expected.site_data_dirs
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.site_data_dirs()? }
@@ -88,7 +88,7 @@ primitive \nodoc\ _AppDirsTestUtil
         where loc = loc)
     end
 
-    match expected.user_config_dir
+    match \exhaustive\ expected.user_config_dir
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.user_config_dir()? }
@@ -99,7 +99,7 @@ primitive \nodoc\ _AppDirsTestUtil
         app_dirs.user_config_dir()?
         where loc = loc)
     end
-    match expected.site_config_dirs
+    match \exhaustive\ expected.site_config_dirs
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.site_config_dirs()? }
@@ -111,7 +111,7 @@ primitive \nodoc\ _AppDirsTestUtil
         where loc = loc)
     end
 
-    match expected.user_cache_dir
+    match \exhaustive\ expected.user_cache_dir
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.user_cache_dir()? }
@@ -123,7 +123,7 @@ primitive \nodoc\ _AppDirsTestUtil
         where loc = loc)
     end
 
-    match expected.user_state_dir
+    match \exhaustive\ expected.user_state_dir
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.user_state_dir()? }
@@ -135,7 +135,7 @@ primitive \nodoc\ _AppDirsTestUtil
         where loc = loc)
     end
 
-    match expected.user_log_dir
+    match \exhaustive\ expected.user_log_dir
     | _ExpectError =>
       h.assert_error(
         {()? => app_dirs.user_log_dir()? }

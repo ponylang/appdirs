@@ -7,6 +7,7 @@ A Pony library for detecting platform-specific user directories (data, config, c
 ```bash
 make test       # build and run all tests (unit tests + build examples)
 make unit-tests # run unit tests only
+make test-one t=TestName       # run a single test by name
 make clean      # clean build artifacts and dependencies
 ```
 

@@ -41,7 +41,7 @@ jobs:
 
   vs-ponyc-release-windows:
     name: Test against recent ponyc release on Windows
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
     steps:
       - name: Disable Windows Defender
         run: Set-MpPreference -DisableRealtimeMonitoring $true

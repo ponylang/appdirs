@@ -133,8 +133,8 @@ primitive KnownFolders
         )
       if result != 0 then
         Debug(
-          "Error getting known folder path: "
-            + result.string())
+          "Error getting known folder path: " +
+            result.string())
         error
       end
 

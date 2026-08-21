@@ -17,39 +17,39 @@ permissions:
   packages: read
 
 jobs:
-  vs-ponyc-release-linux:
-    name: Test against recent ponyc release on Linux
+  vs-ponyc-nightly-linux:
+    name: Test against recent ponyc nightly on Linux
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/ponylang/shared-docker-ci-standard-builder:release
+      image: ghcr.io/ponylang/shared-docker-ci-standard-builder:nightly
     steps:
       - uses: actions/checkout@v6.0.2
       - name: Test
         run: make test config=debug
 
-  vs-ponyc-release-macOS-x86_64:
-    name: Test against recent ponyc release on x86-64 macOS
+  vs-ponyc-nightly-macOS-x86_64:
+    name: Test against recent ponyc nightly on x86-64 macOS
     runs-on: macos-26
     steps:
       - uses: actions/checkout@v6.0.2
       - name: Install dependencies
-        run: bash .ci-scripts/macOS-install-pony-tools.bash release
+        run: bash .ci-scripts/macOS-install-pony-tools.bash nightly
       - name: Test
         run: |
           export PATH="$HOME/.local/share/ponyup/bin/:$PATH"
           make test config=debug
 
-  vs-ponyc-release-windows:
-    name: Test against recent ponyc release on Windows
+  vs-ponyc-nightly-windows:
+    name: Test against recent ponyc nightly on Windows
     runs-on: windows-2025-vs2026
     steps:
       - uses: actions/checkout@v6.0.2
-      - name: Test with most recent ponyc release
+      - name: Test with most recent ponyc nightly
         run: |
-          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/ponyc-x86-64-pc-windows-msvc.zip -OutFile C:\ponyc.zip;
+          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/nightlies/raw/versions/latest/ponyc-x86-64-pc-windows-msvc.zip -OutFile C:\ponyc.zip;
           Expand-Archive -Path C:\ponyc.zip -DestinationPath C:\ponyc;
           $env:PATH = 'C:\ponyc\bin;' + $env:PATH;
-          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/corral-x86-64-pc-windows-msvc.zip -OutFile C:\corral.zip;
+          Invoke-WebRequest https://dl.cloudsmith.io/public/ponylang/nightlies/raw/versions/latest/corral-x86-64-pc-windows-msvc.zip -OutFile C:\corral.zip;
           Expand-Archive -Path C:\corral.zip -DestinationPath C:\corral;
           $env:PATH = 'C:\corral\bin;' + $env:PATH;
           .\make.ps1 test

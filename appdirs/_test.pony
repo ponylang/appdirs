@@ -170,22 +170,22 @@ class \nodoc\ _AppDirsDefaultsTest is UnitTest
           where
             home_dir' = "/Users/ed",
             user_data_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             site_data_dirs' =
-              [ "/Library"
-                + "/Application Support/appdirs"
+              [ "/Library" +
+                "/Application Support/appdirs"
               ],
             user_config_dir' =
-              "/Users/ed/Library"
-                + "/Preferences/appdirs",
+              "/Users/ed/Library" +
+                "/Preferences/appdirs",
             site_config_dirs' =
               ["/Library/Preferences/appdirs"],
             user_cache_dir' =
               "/Users/ed/Library/Caches/appdirs",
             user_state_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             user_log_dir' =
               "/Users/ed/Library/Logs/appdirs")
       elseif windows then
@@ -207,9 +207,9 @@ class \nodoc\ _AppDirsDefaultsTest is UnitTest
             site_config_dirs' =
               ["C:\\ProgramData\\appdirs"],
             user_cache_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\Cache",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\Cache",
             user_state_dir' =
               u + "\\AppData\\Local\\appdirs",
             user_log_dir' =
@@ -256,31 +256,31 @@ class \nodoc\ _AppDirsVersionTest is UnitTest
           where
             home_dir' = "/Users/ed",
             user_data_dir' =
-              "/Users/ed/Library"
-                + "/Application Support"
-                + "/appdirs/0.4",
+              "/Users/ed/Library" +
+                "/Application Support" +
+                "/appdirs/0.4",
             site_data_dirs' =
-              [ "/Library"
-                + "/Application Support"
-                + "/appdirs/0.4"
+              [ "/Library" +
+                "/Application Support" +
+                "/appdirs/0.4"
               ],
             user_config_dir' =
-              "/Users/ed/Library"
-                + "/Preferences/appdirs/0.4",
+              "/Users/ed/Library" +
+                "/Preferences/appdirs/0.4",
             site_config_dirs' =
-              [ "/Library"
-                + "/Preferences/appdirs/0.4"
+              [ "/Library" +
+                "/Preferences/appdirs/0.4"
               ],
             user_cache_dir' =
-              "/Users/ed/Library"
-                + "/Caches/appdirs/0.4",
+              "/Users/ed/Library" +
+                "/Caches/appdirs/0.4",
             user_state_dir' =
-              "/Users/ed/Library"
-                + "/Application Support"
-                + "/appdirs/0.4",
+              "/Users/ed/Library" +
+                "/Application Support" +
+                "/appdirs/0.4",
             user_log_dir' =
-              "/Users/ed/Library"
-                + "/Logs/appdirs/0.4")
+              "/Users/ed/Library" +
+                "/Logs/appdirs/0.4")
       elseif windows then
         // hack for getting the username
         let user_name =
@@ -291,29 +291,29 @@ class \nodoc\ _AppDirsVersionTest is UnitTest
           where
             home_dir' = u,
             user_data_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\0.4",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\0.4",
             site_data_dirs' =
               ["C:\\ProgramData\\appdirs\\0.4"],
             user_config_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\0.4",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\0.4",
             site_config_dirs' =
               ["C:\\ProgramData\\appdirs\\0.4"],
             user_cache_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\Cache\\0.4",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\Cache\\0.4",
             user_state_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\0.4",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\0.4",
             user_log_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\0.4")
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\0.4")
       else
         _ExpectedAppDirs(
           where
@@ -352,8 +352,8 @@ class \nodoc\ _AppDirsNoHomeTest is UnitTest
             home_dir' = _ExpectError,
             user_data_dir' = _ExpectError,
             site_data_dirs' =
-              [ "/Library"
-                + "/Application Support/appdirs"
+              [ "/Library" +
+                "/Application Support/appdirs"
               ],
             user_config_dir' = _ExpectError,
             site_config_dirs' =
@@ -380,9 +380,9 @@ class \nodoc\ _AppDirsNoHomeTest is UnitTest
             site_config_dirs' =
               ["C:\\ProgramData\\appdirs"],
             user_cache_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\Cache",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\Cache",
             user_state_dir' =
               u + "\\AppData\\Local\\appdirs",
             user_log_dir' =
@@ -422,22 +422,22 @@ class \nodoc\ _AppDirsAppAuthorTest is UnitTest
           where
             home_dir' = "/Users/ed",
             user_data_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             site_data_dirs' =
-              [ "/Library"
-                + "/Application Support/appdirs"
+              [ "/Library" +
+                "/Application Support/appdirs"
               ],
             user_config_dir' =
-              "/Users/ed/Library"
-                + "/Preferences/appdirs",
+              "/Users/ed/Library" +
+                "/Preferences/appdirs",
             site_config_dirs' =
               ["/Library/Preferences/appdirs"],
             user_cache_dir' =
               "/Users/ed/Library/Caches/appdirs",
             user_state_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             user_log_dir' =
               "/Users/ed/Library/Logs/appdirs")
       elseif windows then
@@ -450,34 +450,34 @@ class \nodoc\ _AppDirsAppAuthorTest is UnitTest
           where
             home_dir' = u,
             user_data_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\Matthias Wahl\\appdirs",
+              u +
+                "\\AppData\\Local" +
+                "\\Matthias Wahl\\appdirs",
             site_data_dirs' =
-              [ "C:\\ProgramData"
-                + "\\Matthias Wahl\\appdirs"
+              [ "C:\\ProgramData" +
+                "\\Matthias Wahl\\appdirs"
               ],
             user_config_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\Matthias Wahl\\appdirs",
+              u +
+                "\\AppData\\Local" +
+                "\\Matthias Wahl\\appdirs",
             site_config_dirs' =
-              [ "C:\\ProgramData"
-                + "\\Matthias Wahl\\appdirs"
+              [ "C:\\ProgramData" +
+                "\\Matthias Wahl\\appdirs"
               ],
             user_cache_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\Matthias Wahl"
-                + "\\appdirs\\Cache",
+              u +
+                "\\AppData\\Local" +
+                "\\Matthias Wahl" +
+                "\\appdirs\\Cache",
             user_state_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\Matthias Wahl\\appdirs",
+              u +
+                "\\AppData\\Local" +
+                "\\Matthias Wahl\\appdirs",
             user_log_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\Matthias Wahl\\appdirs")
+              u +
+                "\\AppData\\Local" +
+                "\\Matthias Wahl\\appdirs")
       else
         _ExpectedAppDirs(
           where
@@ -520,22 +520,22 @@ class \nodoc\ _AppDirsWindowsRoamingTest is UnitTest
           where
             home_dir' = "/Users/ed",
             user_data_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             site_data_dirs' =
-              [ "/Library"
-                + "/Application Support/appdirs"
+              [ "/Library" +
+                "/Application Support/appdirs"
               ],
             user_config_dir' =
-              "/Users/ed/Library"
-                + "/Preferences/appdirs",
+              "/Users/ed/Library" +
+                "/Preferences/appdirs",
             site_config_dirs' =
               ["/Library/Preferences/appdirs"],
             user_cache_dir' =
               "/Users/ed/Library/Caches/appdirs",
             user_state_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             user_log_dir' =
               "/Users/ed/Library/Logs/appdirs")
       elseif windows then
@@ -558,9 +558,9 @@ class \nodoc\ _AppDirsWindowsRoamingTest is UnitTest
             site_config_dirs' =
               ["C:\\ProgramData\\appdirs"],
             user_cache_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\Cache",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\Cache",
             user_state_dir' =
               u + "\\AppData\\Roaming\\appdirs",
             user_log_dir' =
@@ -610,22 +610,22 @@ class \nodoc\ _AppDirsUnixXDGVarsTest is UnitTest
           where
             home_dir' = "/Users/ed",
             user_data_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             site_data_dirs' =
-              [ "/Library"
-                + "/Application Support/appdirs"
+              [ "/Library" +
+                "/Application Support/appdirs"
               ],
             user_config_dir' =
-              "/Users/ed/Library"
-                + "/Preferences/appdirs",
+              "/Users/ed/Library" +
+                "/Preferences/appdirs",
             site_config_dirs' =
               ["/Library/Preferences/appdirs"],
             user_cache_dir' =
               "/Users/ed/Library/Caches/appdirs",
             user_state_dir' =
-              "/Users/ed/Library"
-                + "/Application Support/appdirs",
+              "/Users/ed/Library" +
+                "/Application Support/appdirs",
             user_log_dir' =
               "/Users/ed/Library/Logs/appdirs")
       elseif windows then
@@ -647,9 +647,9 @@ class \nodoc\ _AppDirsUnixXDGVarsTest is UnitTest
             site_config_dirs' =
               ["C:\\ProgramData\\appdirs"],
             user_cache_dir' =
-              u
-                + "\\AppData\\Local"
-                + "\\appdirs\\Cache",
+              u +
+                "\\AppData\\Local" +
+                "\\appdirs\\Cache",
             user_state_dir' =
               u + "\\AppData\\Local\\appdirs",
             user_log_dir' =
@@ -671,8 +671,8 @@ class \nodoc\ _AppDirsUnixXDGVarsTest is UnitTest
             user_cache_dir' =
               "/home/ed/.kache/appdirs",
             user_state_dir' =
-              "/home/ed/home/ed/home/ed"
-                + "/.state/appdirs",
+              "/home/ed/home/ed/home/ed" +
+                "/.state/appdirs",
             user_log_dir' =
               "/home/ed/.kache/appdirs/log")
       end
@@ -716,8 +716,8 @@ class \nodoc\ _AppDirsOsxAsUnixTest is UnitTest
             user_cache_dir' =
               "/Users/ed/.kache/appdirs",
             user_state_dir' =
-              "/Users/ed/Users/ed/Users/ed"
-                + "/.state/appdirs",
+              "/Users/ed/Users/ed/Users/ed" +
+                "/.state/appdirs",
             user_log_dir' =
               "/Users/ed/.kache/appdirs/log")
       _AppDirsTestUtil.test(

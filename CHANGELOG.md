@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Changed
 
+- Update to work with Pony 0.69.0 ([PR #111](https://github.com/ponylang/appdirs/pull/111))
 
 ## [0.1.5] - 2022-02-26
 

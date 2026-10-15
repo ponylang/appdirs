@@ -105,7 +105,7 @@ class AppDirs
 
     _home =
       ifdef windows then
-        try KnownFolders(KnownFolderIds.profile())? end
+        try Path.clean(KnownFolders(KnownFolderIds.profile())?) end
       else
         try _env_vars("HOME")? end
       end

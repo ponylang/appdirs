@@ -194,26 +194,26 @@ class \nodoc\ _AppDirsDefaultsTest is UnitTest
           EnvVars(h.env.vars)("USERNAME")?
         // TODO: only tested on windows 10
         let u: String val =
-          "C:\\Users\\" + user_name
+          "C:/Users/" + user_name
         _ExpectedAppDirs(
           where
             home_dir' = u,
             user_data_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             site_data_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_config_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             site_config_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_cache_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\Cache",
+                "/AppData/Local" +
+                "/appdirs/Cache",
             user_state_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             user_log_dir' =
-              u + "\\AppData\\Local\\appdirs")
+              u + "/AppData/Local/appdirs")
       else
         _ExpectedAppDirs(
           where
@@ -286,34 +286,34 @@ class \nodoc\ _AppDirsVersionTest is UnitTest
         let user_name =
           EnvVars(h.env.vars)("USERNAME")?
         let u: String val =
-          "C:\\Users\\" + user_name
+          "C:/Users/" + user_name
         _ExpectedAppDirs(
           where
             home_dir' = u,
             user_data_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\0.4",
+                "/AppData/Local" +
+                "/appdirs/0.4",
             site_data_dirs' =
-              ["C:\\ProgramData\\appdirs\\0.4"],
+              ["C:/ProgramData/appdirs/0.4"],
             user_config_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\0.4",
+                "/AppData/Local" +
+                "/appdirs/0.4",
             site_config_dirs' =
-              ["C:\\ProgramData\\appdirs\\0.4"],
+              ["C:/ProgramData/appdirs/0.4"],
             user_cache_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\Cache\\0.4",
+                "/AppData/Local" +
+                "/appdirs/Cache/0.4",
             user_state_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\0.4",
+                "/AppData/Local" +
+                "/appdirs/0.4",
             user_log_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\0.4")
+                "/AppData/Local" +
+                "/appdirs/0.4")
       else
         _ExpectedAppDirs(
           where
@@ -367,26 +367,26 @@ class \nodoc\ _AppDirsNoHomeTest is UnitTest
         let user_name =
           EnvVars(h.env.vars)("USERNAME")?
         let u: String val =
-          "C:\\Users\\" + user_name
+          "C:/Users/" + user_name
         _ExpectedAppDirs(
           where
             home_dir' = u,
             user_data_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             site_data_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_config_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             site_config_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_cache_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\Cache",
+                "/AppData/Local" +
+                "/appdirs/Cache",
             user_state_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             user_log_dir' =
-              u + "\\AppData\\Local\\appdirs")
+              u + "/AppData/Local/appdirs")
       else
         _ExpectedAppDirs(
           where
@@ -445,39 +445,39 @@ class \nodoc\ _AppDirsAppAuthorTest is UnitTest
         let user_name =
           EnvVars(h.env.vars)("USERNAME")?
         let u: String val =
-          "C:\\Users\\" + user_name
+          "C:/Users/" + user_name
         _ExpectedAppDirs(
           where
             home_dir' = u,
             user_data_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\Matthias Wahl\\appdirs",
+                "/AppData/Local" +
+                "/Matthias Wahl/appdirs",
             site_data_dirs' =
-              [ "C:\\ProgramData" +
-                "\\Matthias Wahl\\appdirs"
+              [ "C:/ProgramData" +
+                "/Matthias Wahl/appdirs"
               ],
             user_config_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\Matthias Wahl\\appdirs",
+                "/AppData/Local" +
+                "/Matthias Wahl/appdirs",
             site_config_dirs' =
-              [ "C:\\ProgramData" +
-                "\\Matthias Wahl\\appdirs"
+              [ "C:/ProgramData" +
+                "/Matthias Wahl/appdirs"
               ],
             user_cache_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\Matthias Wahl" +
-                "\\appdirs\\Cache",
+                "/AppData/Local" +
+                "/Matthias Wahl" +
+                "/appdirs/Cache",
             user_state_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\Matthias Wahl\\appdirs",
+                "/AppData/Local" +
+                "/Matthias Wahl/appdirs",
             user_log_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\Matthias Wahl\\appdirs")
+                "/AppData/Local" +
+                "/Matthias Wahl/appdirs")
       else
         _ExpectedAppDirs(
           where
@@ -545,26 +545,26 @@ class \nodoc\ _AppDirsWindowsRoamingTest is UnitTest
         let user_name =
           EnvVars(h.env.vars)("USERNAME")?
         let u: String val =
-          "C:\\Users\\" + user_name
+          "C:/Users/" + user_name
         _ExpectedAppDirs(
           where
             home_dir' = u,
             user_data_dir' =
-              u + "\\AppData\\Roaming\\appdirs",
+              u + "/AppData/Roaming/appdirs",
             site_data_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_config_dir' =
-              u + "\\AppData\\Roaming\\appdirs",
+              u + "/AppData/Roaming/appdirs",
             site_config_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_cache_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\Cache",
+                "/AppData/Local" +
+                "/appdirs/Cache",
             user_state_dir' =
-              u + "\\AppData\\Roaming\\appdirs",
+              u + "/AppData/Roaming/appdirs",
             user_log_dir' =
-              u + "\\AppData\\Roaming\\appdirs")
+              u + "/AppData/Roaming/appdirs")
       else
         _ExpectedAppDirs(
           where
@@ -634,26 +634,26 @@ class \nodoc\ _AppDirsUnixXDGVarsTest is UnitTest
         let user_name =
           EnvVars(h.env.vars)("USERNAME")?
         let u: String val =
-          "C:\\Users\\" + user_name
+          "C:/Users/" + user_name
         _ExpectedAppDirs(
           where
             home_dir' = u,
             user_data_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             site_data_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_config_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             site_config_dirs' =
-              ["C:\\ProgramData\\appdirs"],
+              ["C:/ProgramData/appdirs"],
             user_cache_dir' =
               u +
-                "\\AppData\\Local" +
-                "\\appdirs\\Cache",
+                "/AppData/Local" +
+                "/appdirs/Cache",
             user_state_dir' =
-              u + "\\AppData\\Local\\appdirs",
+              u + "/AppData/Local/appdirs",
             user_log_dir' =
-              u + "\\AppData\\Local\\appdirs")
+              u + "/AppData/Local/appdirs")
       else
         _ExpectedAppDirs(
           where

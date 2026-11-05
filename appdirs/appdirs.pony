@@ -202,7 +202,7 @@ class AppDirs
       end
     match _app_version
     | let v: String =>
-      for i in Range[USize](
+      for i in Range[USize].till(
         0, os_specific_dirs.size())
       do
         os_specific_dirs(i)? =
@@ -225,7 +225,7 @@ class AppDirs
         end
       end
 
-    for idx in Range[USize](
+    for idx in Range[USize].till(
       0, data_dirs.size())
     do
       data_dirs(idx)? =
@@ -291,7 +291,7 @@ class AppDirs
 
     match _app_version
     | let v: String =>
-      for i in Range[USize](
+      for i in Range[USize].till(
         0, os_specific_dirs.size())
       do
         os_specific_dirs(i)? =
@@ -312,7 +312,7 @@ class AppDirs
         recover iso ["/etc/xdg"] end
       end
 
-    for idx in Range[USize](
+    for idx in Range[USize].till(
       0, config_dirs.size())
     do
       config_dirs(idx)? =

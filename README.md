@@ -10,7 +10,7 @@ Appdirs is an beta-level package.
 
 ## Installation
 
-* Requires ponyc 0.77.0 or later.
+* Requires ponyc 0.78.0 or later.
 * Install [corral](https://github.com/ponylang/corral)
 * `corral add github.com/ponylang/appdirs.git --version 0.2.0`
 * `corral fetch` to fetch your dependencies
